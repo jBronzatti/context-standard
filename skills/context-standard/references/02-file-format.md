@@ -41,7 +41,7 @@ sources:                             # REQUIRED if any claim came from outside.
 depends_on: [product-a/policy/ai-disclosure]   # OPTIONAL. ids this file relies on.
 used_by: [feature-x/pipeline/publishing]       # OPTIONAL. ids that rely on this file.
 supersedes: []                                 # OPTIONAL. ids this replaces.
-owner: joao                                    # OPTIONAL. Who decides when this is contested.
+owner: alice                                   # OPTIONAL. Who decides when this is contested.
 tags: [youtube, policy, monetization]          # REQUIRED. Lowercase, reusable.
 ---
 ```

@@ -92,7 +92,7 @@ An untagged assertion in a context file should be read as `[INFERENCE]` at best.
 ## 7. Knowledge flows downhill and gets promoted upward
 
 General knowledge lives in the general folder; specific knowledge in the specific one.
-`feature-x/context` may cite `product-a/context` may cite `context`. Never the reverse.
+`feature-x/context` may cite `product-a/context` may cite the standard. Never the reverse.
 
 When a project discovers something true of the whole category, **promote it**: move the
 fact up a level and replace the original with a link. When a general rule turns out to

@@ -79,20 +79,7 @@ Two files disagree. In order:
 
 ## The audit
 
-Run when a folder feels wrong, before a major project phase, or quarterly.
-
-- [ ] Every file in the folder appears in `INDEX.md`, and vice versa.
-- [ ] Every `depends_on` / `supersedes` id resolves to a real file.
-- [ ] No two files state the same number independently.
-- [ ] Every file has all required front-matter fields.
-- [ ] Files past `review_by` are listed and triaged.
-- [ ] No untagged numeric claims.
-- [ ] `decisions.md` has no entry contradicted by a topic file.
-- [ ] `open-questions.md` has no entry that was silently answered elsewhere.
-- [ ] No file exceeds the size ceilings in `03-folder-architecture.md`.
-- [ ] `AGENTS.md` still describes the folder that actually exists.
-
-Record the audit date in `CHANGELOG.md`. An audit that finds nothing is still worth logging.
+When to run it, the checklist, and how to record it live in `../SKILL.md` § Audit checklist.
 
 ## Cost discipline
 

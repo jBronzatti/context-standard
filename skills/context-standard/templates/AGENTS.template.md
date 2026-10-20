@@ -17,8 +17,9 @@ tags: [meta, routing, entrypoint]
 
 ## Governed by
 
-This folder follows the living-context standard at `<workspace-root>/context/`.
-Read `<workspace-root>/context/standard/02-file-format.md` before writing any file here.
+This folder follows the living-context standard (the `context-standard` skill). If the
+skill is not loaded, read `<skill-dir>/SKILL.md` first — `<skill-dir>` is the installed
+`context-standard` folder, e.g. `~/.claude/skills/context-standard`.
 <State any rule this folder overrides, and why. If none: "No overrides.">
 
 ## Reading protocol

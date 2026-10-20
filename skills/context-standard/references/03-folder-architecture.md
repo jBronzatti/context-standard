@@ -70,7 +70,7 @@ Pick the file whose subject the fact is *about*, not the file that will read it 
 
 - Files: lowercase, hyphenated, noun-phrase. `mid-roll-ads.md`, not `MidRollAds.md` or
   `how-mid-roll-ads-work-and-why-they-matter.md`.
-- Prefix with `NN-` only where reading order genuinely matters (like `standard/` here).
+- Prefix with `NN-` only where reading order genuinely matters (like this standard's `references/`).
 - Categories: lowercase, singular or plural consistently, one word where possible.
 - Never encode dates or versions in filenames. Those live in front matter.
 
