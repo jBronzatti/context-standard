@@ -13,7 +13,6 @@ sources:
   - https://www.mindstudio.ai/blog/progressive-disclosure-ai-agents-context-management
   - https://umesh-malik.com/blog/ai-agent-knowledge-base-architecture
   - https://ro14nd.de/what-goes-in-agents-md/
-used_by: [ctx/standard/principles, ctx/standard/navigation]
 tags: [research, context-engineering]
 ---
 

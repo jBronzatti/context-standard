@@ -45,7 +45,8 @@ Topic files come from `templates/topic-file.template.md`; experiment entries fro
 
 **Front matter is mandatory** on every `.md` in a context folder, `INDEX.md` and
 `AGENTS.md` included (`README.md` is exempt). Required: `id`, `title`, `summary`,
-`read_when` (2–5 *tasks*, not topics), `status` (stable | draft | contested | superseded),
+`read_when` (2–5 *tasks*, not topics; 1–5 in `AGENTS.md` and `INDEX.md`, which
+navigation reads on every task), `status` (stable | draft | contested | superseded),
 `confidence` (high | medium | low), `volatility`, `verified`, `review_by`, `tags`, and
 `sources` whenever a claim came from outside.
 
@@ -60,7 +61,7 @@ Topic files come from `templates/topic-file.template.md`; experiment entries fro
 | Tag | Means |
 |---|---|
 | `[OFFICIAL]` | Stated by the authority itself |
-| `[MEASURED]` | Third-party study with disclosed method and sample |
+| `[MEASURED]` | Measured with method and sample described — by a third party or by us |
 | `[INFERENCE]` | Reasoned conclusion or consensus, no authority behind it |
 | `[CONTESTED]` | Credible sources disagree — record both and why you weight one higher |
 | `[ASSUMPTION]` | Chosen to move forward, untested — state what would falsify it |
@@ -68,7 +69,7 @@ Topic files come from `templates/topic-file.template.md`; experiment entries fro
 | `[OPEN]` | Known unknown, with what would resolve it |
 
 Never upgrade a tag without new evidence. A number needs a tag and a date:
-`[MEASURED, 2026-09] 340 ms p95`. An untagged claim reads as `[INFERENCE]` at best.
+`[MEASURED, 2026-09] 340 ms p95 — 10k requests over 24 h, APM`. An untagged claim reads as `[INFERENCE]` at best.
 
 **In the same edit** that adds, removes, renames or repurposes a file, update `INDEX.md`.
 In the same edit as anything a future reader would be surprised by — reversals,
@@ -81,6 +82,11 @@ Also:
   `review_by`. Re-reading is not verifying.
 - One subject per file; a fact lives in exactly one file and others link to it by `id`,
   never by path. Target ≤ 300 lines, split past 400; `AGENTS.md` ≤ 150, ceiling 200.
+- `depends_on` is the source of truth for dependencies. `used_by` is optional; if present
+  it lists exactly the ids of the files in the same context folder whose `depends_on`
+  names this id.
+  A context folder is the tree governed by one `AGENTS.md`, its categories included; a
+  deeper folder with its own `AGENTS.md` is a separate context folder.
 - Never delete a decision: supersede it, record the outcome, link forward. Never delete a
   stale file: verify it.
 - Knowledge flows downhill: a feature folder may cite its product folder, never the
@@ -111,6 +117,9 @@ Run when a folder feels wrong, before a major phase, or quarterly.
 - [ ] `open-questions.md` has no entry that was silently answered elsewhere.
 - [ ] No file exceeds the size ceilings in `references/03-folder-architecture.md`.
 - [ ] `AGENTS.md` still describes the folder that actually exists.
+- [ ] Every `used_by` that is present lists exactly the ids of the files in this context
+      folder (the tree under its `AGENTS.md`, categories included, stopping at any deeper
+      `AGENTS.md`) whose `depends_on` names it.
 
 Record the audit in `CHANGELOG.md`, even when it finds nothing.
 

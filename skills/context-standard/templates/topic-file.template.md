@@ -14,8 +14,7 @@ verified: YYYY-MM-DD
 review_by: YYYY-MM-DD
 sources:
   - <url>
-depends_on: []
-used_by: []
+depends_on: []           # ids this file relies on — the source of truth
 tags: []
 ---
 

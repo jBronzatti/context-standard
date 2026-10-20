@@ -82,7 +82,7 @@ scattering it into a topic file.
 > /context-standard audit product-a/context
 ```
 
-Claude runs the ten-item audit checklist in `SKILL.md` against that folder, reports what
+Claude runs the audit checklist in `SKILL.md` against that folder, reports what
 it found, and logs the audit in its `CHANGELOG.md`.
 
 ## The one habit that matters

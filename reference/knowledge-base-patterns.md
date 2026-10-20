@@ -61,10 +61,11 @@ re-checking every fact.
 knowledge base into a bidirectional graph that a linter can check — catching dangling
 references, cycles, and contradictions before they cause a bad agent run.
 
-We encode this (`depends_on` / `used_by` / `supersedes`). We do not yet have the linter.
-[OPEN] Worth writing a 50-line script that validates every id resolves and every
-`depends_on` has a matching `used_by`. Resolved by: writing it when the folder exceeds
-~30 files.
+We encode this with `depends_on` as the source of truth, `supersedes`, and an optional
+`used_by` derived from `depends_on` (see `ctx/standard/file-format`). We do not yet have
+the linter. [OPEN] Worth writing a 50-line script that validates every id resolves and
+every `used_by`, where present, matches the `depends_on` of its context folder. Resolved
+by: writing it when the folder exceeds ~30 files.
 
 ## The maintenance flywheel
 
