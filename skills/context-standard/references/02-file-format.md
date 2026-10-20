@@ -9,7 +9,6 @@ volatility: slow
 verified: 2026-09-14
 review_by: 2026-12-14
 depends_on: [ctx/standard/principles]
-used_by: [ctx/standard/maintenance, ctx/standard/provenance]
 tags: [meta, format, schema]
 ---
 
@@ -26,7 +25,7 @@ id: product-a/policy/monetization    # REQUIRED. Stable, unique, path-like, lowe
 title: YouTube monetization policy   # REQUIRED. Human-readable.
 summary: >                           # REQUIRED. One sentence. What this file answers.
   What YPP requires in 2026 and what disqualifies a channel.
-read_when:                           # REQUIRED. 2-5 concrete task triggers.
+read_when:                           # REQUIRED. 2-5 task triggers (1-5 in AGENTS.md / INDEX.md).
   - "you are about to publish a video"
   - "you are assessing demonetization risk"
 do_not_read_when:                    # OPTIONAL. Prevents wrong loads.
@@ -38,8 +37,8 @@ verified: 2026-09-14                 # REQUIRED. Last date a human/agent re-chec
 review_by: 2026-11-14                # REQUIRED. Derived from volatility (see below).
 sources:                             # REQUIRED if any claim came from outside.
   - https://support.google.com/youtube/answer/1311392
-depends_on: [product-a/policy/ai-disclosure]   # OPTIONAL. ids this file relies on.
-used_by: [feature-x/pipeline/publishing]       # OPTIONAL. ids that rely on this file.
+depends_on: [product-a/policy/ai-disclosure]   # OPTIONAL. ids this file relies on. Source of truth.
+used_by: [product-a/pipeline/publishing]       # OPTIONAL. Derived from depends_on; see below.
 supersedes: []                                 # OPTIONAL. ids this replaces.
 owner: alice                                   # OPTIONAL. Who decides when this is contested.
 tags: [youtube, policy, monetization]          # REQUIRED. Lowercase, reusable.
@@ -53,6 +52,19 @@ move without breaking links. Format: `<folder>/<category>/<subject>`.
 
 **`read_when`** — the routing table. Write it as *tasks an agent might be doing*, not as
 topics. "you are choosing a video length" routes correctly; "video length" does not.
+Exception: `AGENTS.md` and `INDEX.md` need only one trigger (up to five). The navigation
+algorithm reads both on every task, so their `read_when` routes nothing; the field stays
+required so every file has the same schema. Category `00-index.md` files are not read on
+every task and keep the 2–5 range.
+
+**`depends_on` / `used_by`** — `depends_on` is the source of truth: the ids this file
+relies on. `used_by` is its mirror and is optional. If present, it lists **exactly** the
+ids of the files in the same context folder whose `depends_on` names this id — no more, no fewer. A
+*context folder* is the tree governed by one `AGENTS.md`, its categories included; a
+deeper folder with its own `AGENTS.md` is a separate context folder. Dependents in other
+context folders are never listed: naming a downstream file would cite downhill, and an
+audit run inside this folder cannot see them. A hand-kept mirror drifts, so prefer
+leaving `used_by` out.
 
 **`volatility` → `review_by`** — set the review interval mechanically:
 
@@ -80,7 +92,7 @@ Inline, at the start of the sentence or bullet that makes the claim.
 | Tag | Means | Example source |
 |---|---|---|
 | `[OFFICIAL]` | Stated by the authority itself | YouTube Help Center, a vendor's own pricing page |
-| `[MEASURED]` | Third-party study with disclosed methodology and sample | a published analysis of N channels |
+| `[MEASURED]` | Measured with method and sample described — by a third party or by us | a published analysis of N channels; our own log of 1,200 requests |
 | `[INFERENCE]` | Reasoned conclusion, community consensus, no authority behind it | "creators report…" |
 | `[CONTESTED]` | Credible sources directly disagree — record both sides | two RPM figures 3x apart |
 | `[ASSUMPTION]` | We chose to assume this to move forward; untested | "assume $6 RPM for modelling" |
@@ -92,7 +104,12 @@ Rules:
   because it has been in the file a while is the single worst thing you can do here.
 - `[CONTESTED]` claims must state **both** figures and **why** you weight one higher.
 - `[ASSUMPTION]` claims must carry the condition that would falsify them.
-- A number without a tag and a date is not usable. Write `[MEASURED, 2026-09] 340 ms p95`.
+- Our own observation is `[MEASURED]` only when the claim records method, sample and date:
+  `[MEASURED, 2026-10] 429s start at 100 req/min — 3 runs × 500 requests, client log
+  query rate-limit-probe`.
+  A few errors noticed in passing are `[INFERENCE]`.
+- A number without a tag and a date is not usable. Write
+  `[MEASURED, 2026-09] 340 ms p95 — 10k requests over 24 h, APM`.
 
 ## Body structure
 

@@ -24,6 +24,9 @@ tags: [meta, research, sources]
 | **D** | Aggregators, "best X of 2026" listicles, tool-vendor blogs, SEO content farms | `[INFERENCE]`, low confidence | See the warning below |
 | **E** | Uncited numbers, AI-generated summaries of unknown provenance, forum hearsay | Do not record as fact | Record as `[OPEN]` if the question matters |
 
+Tiers grade outside sources. Our own measurements — logs, load tests, experiments — are
+graded by the `[MEASURED]` rule in `02-file-format.md`.
+
 ## The tier-D warning
 
 A large share of content on commercially valuable queries — pricing, RPM, "best tools",
@@ -49,7 +52,8 @@ For every finding worth keeping:
 1. **Claim** — one sentence, specific, with units.
 2. **Tag** — from the vocabulary in `02-file-format.md`.
 3. **Date** — when the source said it, not when you read it, if they differ.
-4. **Source** — full URL in `sources:`; inline if per-claim attribution matters.
+4. **Source** — full URL in `sources:`; inline if per-claim attribution matters. For our
+   own measurement, where the data lives (log query, dashboard, experiment id).
 5. **Method** — for `[MEASURED]`, the sample and how it was gathered.
 6. **Bias note** — for tier C/D, who benefits from this being believed.
 

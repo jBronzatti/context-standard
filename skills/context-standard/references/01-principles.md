@@ -15,7 +15,6 @@ sources:
   - https://www.mindstudio.ai/blog/progressive-disclosure-ai-agents-context-management
   - https://ro14nd.de/what-goes-in-agents-md/
 depends_on: []
-used_by: [ctx/standard/file-format, ctx/standard/folder-architecture, ctx/standard/navigation]
 tags: [meta, principles]
 ---
 

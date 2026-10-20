@@ -17,6 +17,28 @@ Append at the top. Log reversals, corrections, deletions, promotions and audits.
 Do not log typos.
 
 ## 2026-10-20
+- [DECISION] **Broadened** `[MEASURED]` to "measured with method and sample described — by
+  a third party or by us" (`SKILL.md`, `02-file-format.md`, `07-research-provenance.md`).
+  Two test sessions disagreed on whether an API limit found through 429 errors could be
+  `[MEASURED]`. What separates a measurement from an impression is the recorded method,
+  not who measured. The experiment-log template already used it this way.
+- [DECISION] **Lowered** the minimum of `read_when` to one for `AGENTS.md` and `INDEX.md`
+  (range 1–5; other files, category `00-index.md` included, keep 2–5), because navigation
+  reads both on every task. The field stays required.
+  The rule contradicted the AGENTS and INDEX templates, which ship one trigger.
+- [DECISION] **Made** `depends_on` the source of truth. `used_by` is now optional; if
+  present it must list exactly the ids of the files in the same context folder (the tree
+  governed by one `AGENTS.md`, categories included, excluding deeper folders with their own
+  `AGENTS.md`) whose `depends_on` names the file. The audit checks
+  this. A hand-kept mirror drifted on the first day of testing, and listing dependents in
+  other context folders would cite downhill. The example in the `02` schema had done
+  exactly that, and now uses an id from the same folder.
+- **Removed** `used_by` from `01-principles.md`, `02-file-format.md` and
+  `reference/context-engineering-research.md`. All three were out of sync with the
+  `depends_on` that point at them. Also removed from the topic-file template.
+- **Changed** the `[OPEN]` linter item in `reference/knowledge-base-patterns.md`: it now
+  checks `used_by` against `depends_on` only where `used_by` is present, instead of
+  requiring a `used_by` for every `depends_on`.
 - **Moved** `standard/01`–`07` → `skills/context-standard/references/` and `templates/` →
   `skills/context-standard/templates/`, so the standard installs as an Agent Skill by
   copying one folder. File names and `id:` values are unchanged.
