@@ -1,7 +1,7 @@
 ---
 id: <folder>/index
 title: Index — <project> context
-summary: Every file in this folder, what it covers, and when to read it.
+summary: Every file in this folder that is not superseded, what it covers, and when to read it.
 read_when: ["you need to find the right context file for a task"]
 status: stable
 confidence: high

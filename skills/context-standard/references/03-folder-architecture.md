@@ -29,7 +29,7 @@ tags: [meta, architecture]
 ```
 <project>/context/
   AGENTS.md            REQUIRED  Routing rules for this folder. Read first, always.
-  INDEX.md             REQUIRED  Every file, with "read this when…" triggers.
+  INDEX.md             REQUIRED  Every file not superseded, with "read this when…" triggers.
   CHANGELOG.md         REQUIRED  Append-only. What changed, when, why.
   decisions.md         REQUIRED  Decision log. Exists from day one, even empty.
   open-questions.md    REQUIRED  Known unknowns and what would resolve each.

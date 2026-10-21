@@ -1,6 +1,7 @@
 {
   "skills": ["context-standard"],
   "query": "I just load-tested the Acme API from our client: 4 runs of 250 requests each, and it starts returning 429 at about 120 requests per minute. Record this in the product-a context.",
+  "as_of": "2026-10-21",
   "files": [
     "files/product-a/context/AGENTS.md",
     "files/product-a/context/INDEX.md",
@@ -14,7 +15,7 @@
     "Loads the context-standard skill before editing any file",
     "Reads product-a/context/AGENTS.md and INDEX.md before choosing where to write",
     "Writes the fact into stack/acme-api.md, the file that owns the Acme API, instead of creating a new file",
-    "Tags the claim [MEASURED, YYYY-MM] with the current month, and records the method and sample (4 runs of 250 requests, from the client)",
+    "Tags the claim [MEASURED, 2026-10], the month of as_of, and records the method and sample (4 runs of 250 requests, from the client)",
     "Marks the earlier [ASSUMPTION] that the API does not limit our rate as falsified by this test, instead of deleting it",
     "Appends an entry to CHANGELOG.md, because a limit changed",
     "Leaves INDEX.md unchanged, because no file was added, removed or repurposed",

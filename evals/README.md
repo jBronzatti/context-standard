@@ -15,16 +15,22 @@ description or rules.
 ## Format
 
 Each file is one evaluation in the format of Anthropic's Agent Skills best practices
-("Build evaluations first"): `skills`, `query`, `files`, `expected_behavior`. One field is
-added, `should_trigger`, borrowed from the trigger-query format on agentskills.io, so that
-a runner can check activation without parsing prose.
+("Build evaluations first"): `skills`, `query`, `files`, `expected_behavior`. Two fields
+are added:
+
+- `should_trigger`, borrowed from the trigger-query format on agentskills.io, so that a
+  runner can check activation without parsing prose.
+- `as_of`, the date the session must treat as today. Every date in `expected_behavior`
+  and in the fixtures is chosen against it, so no result depends on the day the
+  evaluation runs.
 
 There is no built-in runner. To run one by hand:
 
 1. Install the skill (see the root `README.md`).
 2. Copy each path in `files` into an empty directory, dropping the leading `files/`:
    `files/product-a/context/INDEX.md` becomes `product-a/context/INDEX.md`.
-3. Start a new Claude Code session in that directory and send `query` unchanged.
+3. Start a new Claude Code session in that directory and send the line
+   `Assume today is <as_of>.`, then a blank line, then `query` unchanged.
 4. An evaluation passes when the skill loads exactly when `should_trigger` is true and
    every `expected_behavior` item holds. Run each one 3 times, with every model you
    support.
@@ -43,9 +49,9 @@ copy test fixtures.
 - `stack/acme-api.md` states a number (300 seconds) without a claim tag.
 
 `CHANGELOG.md` and `open-questions.md` there have `review_by: 2026-12-01`, and the other
-three root files `2027-04-01`. From the day after each date, an audit correctly reports
-those files as unverified too. Before that happens, move `verified` and `review_by`
-forward together, keeping `review_by` = `verified` + interval, and log it.
+three root files `2027-04-01`, so on `as_of` 2026-10-21 they are fresh. Do not move these
+dates forward as time passes. A scenario that needs another date changes `as_of`, and the
+fixture and `expected_behavior` in the same edit.
 
 `files/node-app/` is a Node repo with a plain `AGENTS.md`: no front matter and no
 `INDEX.md`, the case the skill's description excludes.

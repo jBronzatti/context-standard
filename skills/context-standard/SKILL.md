@@ -95,7 +95,11 @@ Also:
   it lists exactly the ids of the files in the same context folder whose `depends_on`
   names this id.
   A context folder is the tree governed by one `AGENTS.md`, its categories included; a
-  deeper folder with its own `AGENTS.md` is a separate context folder.
+  deeper folder with its own `AGENTS.md` is a separate context folder. Files matching the
+  globs in that `AGENTS.md`'s optional `exclude:` field (e.g. `["fixtures/**"]`) are
+  outside it: they need no front matter or index entry and are not audited, but
+  `INDEX.md` may still route to them and their ids still resolve. Exclude what is not
+  context, never a file to silence a finding (`references/02-file-format.md`).
 - Never delete a decision: supersede it, record the outcome, link forward. Never delete a
   stale file: verify it.
 - Knowledge flows downhill: a feature folder may cite its product folder, never the
@@ -116,7 +120,8 @@ Also:
 
 Run when a folder feels wrong, before a major phase, or quarterly.
 
-- [ ] Every file in the folder appears in `INDEX.md`, and vice versa.
+- [ ] Every file that is not superseded appears in `INDEX.md`, and vice versa; an entry
+      may also point at an excluded file.
 - [ ] Every `depends_on` / `supersedes` id resolves to a real file.
 - [ ] No two files state the same number independently.
 - [ ] Every file has all required front-matter fields.
@@ -128,7 +133,11 @@ Run when a folder feels wrong, before a major phase, or quarterly.
 - [ ] `AGENTS.md` still describes the folder that actually exists.
 - [ ] Every `used_by` that is present lists exactly the ids of the files in this context
       folder (the tree under its `AGENTS.md`, categories included, stopping at any deeper
-      `AGENTS.md`) whose `depends_on` names it.
+      `AGENTS.md`, less its `exclude` matches) whose `depends_on` names it.
+- [ ] Every `review_by` equals `verified` plus the review interval of its `volatility`
+      (month-end rule: `references/05-maintenance-protocol.md` § Staleness).
+- [ ] The five root files exist: `AGENTS.md`, `INDEX.md`, `CHANGELOG.md`, `decisions.md`,
+      `open-questions.md`.
 
 Record the audit in `CHANGELOG.md`, even when it finds nothing.
 

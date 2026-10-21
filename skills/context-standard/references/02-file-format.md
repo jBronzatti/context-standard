@@ -51,6 +51,7 @@ depends_on: [product-a/policy/ai-disclosure]   # OPTIONAL. ids this file relies 
 used_by: [product-a/pipeline/publishing]       # OPTIONAL. Derived from depends_on; see below.
 supersedes: []                                 # OPTIONAL. ids this replaces.
 owner: alice                                   # OPTIONAL. Who decides when this is contested.
+exclude: ["fixtures/**"]                       # OPTIONAL. AGENTS.md only. Files outside the folder.
 tags: [youtube, policy, monetization]          # REQUIRED. Lowercase, reusable.
 ---
 ```
@@ -69,12 +70,32 @@ every task and keep the 2–5 range.
 
 **`depends_on` / `used_by`** — `depends_on` is the source of truth: the ids this file
 relies on. `used_by` is its mirror and is optional. If present, it lists **exactly** the
-ids of the files in the same context folder whose `depends_on` names this id — no more, no fewer. A
-*context folder* is the tree governed by one `AGENTS.md`, its categories included; a
-deeper folder with its own `AGENTS.md` is a separate context folder. Dependents in other
-context folders are never listed: naming a downstream file would cite downhill, and an
-audit run inside this folder cannot see them. A hand-kept mirror drifts, so prefer
-leaving `used_by` out.
+ids of the files in the same context folder whose `depends_on` names this id — no more,
+no fewer. A *context folder* is the tree governed by one `AGENTS.md`, its categories
+included, less the files its `exclude` names; a deeper folder with its own `AGENTS.md` is
+a separate context folder. Dependents in other context folders are never listed: naming a
+downstream file would cite downhill, and an audit run inside this folder cannot see them.
+A hand-kept mirror drifts, so prefer leaving `used_by` out.
+
+**`exclude`** — optional, and read only from a folder's `AGENTS.md`: a list of glob
+patterns, relative to that folder, naming files that sit in its tree but are not part of
+the context folder, such as tooling, test fixtures, or files that follow another tool's
+schema. Exclude what is not context; never exclude a file to silence an audit finding.
+
+- An excluded file needs no front matter and no index entry, and is not audited.
+- It can still be reached. `INDEX.md` may point at it. Its `id`, if valid, resolves after
+  the folder's own files and before any parent folder's, so `depends_on` may name it.
+- Only files of the folder's own tree can be excluded. A deeper folder with its own
+  `AGENTS.md` is a separate context folder whatever the patterns say, so excluding never
+  lets a folder cite downhill. `AGENTS.md` itself is never excluded.
+- Patterns match file paths, not directories: `fixtures/**`, not `fixtures`. Segments are
+  separated by `/`, and none is empty, `.` or `..`, so a pattern never starts or ends
+  with `/`. `*` matches any run of characters inside one segment, a leading `.` included;
+  `?` matches one character inside one segment; a segment that is exactly `**` matches
+  any number of whole segments, zero included. Every other character matches itself, case
+  included.
+
+Example: `exclude: ["fixtures/**", "*.draft.md"]`.
 
 **`volatility` → `review_by`** — set the review interval mechanically:
 

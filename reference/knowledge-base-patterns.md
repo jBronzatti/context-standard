@@ -88,6 +88,7 @@ never point a routine task at it.
 
 ## Anti-pattern noted across sources
 
-Loading the whole knowledge base up front. Reported as the difference between an 80%
-token reduction and none. It is also the most natural thing to do, which is why the
-standard makes it explicitly forbidden rather than merely discouraged.
+Loading the whole knowledge base up front. [INFERENCE] Reported as the difference between
+a large token reduction and none (the figure lives in `ctx/reference/context-engineering`).
+It is also the most natural thing to do, which is why the standard makes it explicitly
+forbidden rather than merely discouraged.

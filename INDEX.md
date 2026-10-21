@@ -23,6 +23,11 @@ Read `AGENTS.md` first. This index tells you which file answers which question.
 | `CLAUDE.md` | Never; it only imports `AGENTS.md` for Claude Code. |
 | `README.md` | You are a human and want the tour or the install steps. Agents can skip it. |
 | `CHANGELOG.md` | You need to know whether a rule changed recently, or you just changed one. |
+| `decisions.md` | You are about to change how this repository is organised or tooled, or need to know why it is set up this way. |
+| `open-questions.md` | You are deciding how to package or distribute the skill, or how to run the evaluations automatically. |
+
+`skills/`, `mcp/` and `evals/` are excluded from this context folder (`AGENTS.md`,
+`exclude:`). The rows below that point into them are for navigation only.
 
 ## skills/context-standard/ — the skill
 

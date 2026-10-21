@@ -86,9 +86,9 @@ self-reported, but directionally consistent with the official guidance.
   first, then precision.
 - **Structured note-taking** — persistent external memory (a NOTES.md, a knowledge base)
   written during the task and pulled back in later. *This is what a living context is.*
-- **Sub-agent architectures** — specialised sub-agents with clean context windows return
-  condensed summaries (stated as roughly 1,000–2,000 tokens) to a coordinator, separating
-  detailed exploration from high-level synthesis.
+- [OFFICIAL, 2026-09] **Sub-agent architectures** — specialised sub-agents with clean
+  context windows return condensed summaries (stated as roughly 1,000–2,000 tokens) to a
+  coordinator, separating detailed exploration from high-level synthesis.
 
 ## Knowledge-file vs recipe separation
 
