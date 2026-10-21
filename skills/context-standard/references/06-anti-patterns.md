@@ -17,6 +17,25 @@ tags: [meta, anti-patterns]
 
 # Anti-patterns
 
+## Contents
+
+1. The context dump
+2. Restating what the model already knows
+3. Pasting raw research
+4. The unverifiable number
+5. Tag inflation
+6. Duplicated facts
+7. Orphaned files
+8. Vague `read_when`
+9. Procedures welded to facts
+10. Write-once context
+11. Deleting history
+12. Forced consensus
+13. The category graveyard
+14. Context as authority
+
+- The two-question test
+
 ## 1. The context dump
 **Looks like:** one 2,000-line file called `project-context.md` or `notes.md`.
 **Why it fails:** the agent pays full context-rot cost for every task regardless of need,

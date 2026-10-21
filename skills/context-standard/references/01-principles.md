@@ -20,6 +20,20 @@ tags: [meta, principles]
 
 # Principles
 
+## Contents
+
+1. Context is a finite, degrading resource — not a bucket
+2. Write only what an agent cannot discover on its own
+3. Index first, load late (progressive disclosure)
+4. One subject per file, and facts live in exactly one place
+5. Separate facts from procedures
+6. Every claim carries its epistemic status
+7. Knowledge flows downhill and gets promoted upward
+8. Freshness is a property of the file, not of the folder
+9. The folder must be cheaper to update than to ignore
+
+- What follows from these
+
 ## 1. Context is a finite, degrading resource — not a bucket
 
 [OFFICIAL] Model accuracy declines as token count rises. The mechanism is architectural:
@@ -105,7 +119,8 @@ own `verified:` date and `review_by:` date, so maintenance can be targeted rathe
 doomed quarterly re-read of everything.
 
 A file past its `review_by` is not wrong — it is **unverified**, and an agent should say so
-rather than either trusting it blindly or discarding it.
+rather than either trusting it blindly or discarding it. One more interval later it is
+**drifted**, and is verified before use (`ctx/standard/maintenance`).
 
 ## 9. The folder must be cheaper to update than to ignore
 

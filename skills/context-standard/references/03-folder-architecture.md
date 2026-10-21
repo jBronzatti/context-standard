@@ -14,6 +14,16 @@ tags: [meta, architecture]
 
 # Folder architecture
 
+## Contents
+
+- The canonical shape
+- Choosing categories
+- Where does this fact go?
+- Naming
+- Size limits
+- Promotion and demotion
+- `AGENTS.md` nesting
+
 ## The canonical shape
 
 ```
@@ -23,6 +33,7 @@ tags: [meta, architecture]
   CHANGELOG.md         REQUIRED  Append-only. What changed, when, why.
   decisions.md         REQUIRED  Decision log. Exists from day one, even empty.
   open-questions.md    REQUIRED  Known unknowns and what would resolve each.
+  CLAUDE.md            CONDITIONAL  One line, @AGENTS.md, when Claude Code works here.
   <category>/          One folder per durable area of concern.
     00-index.md        Category index if the category has >4 files.
     <topic>.md         One subject each.
@@ -33,6 +44,14 @@ tags: [meta, architecture]
 Five required root files. That is the floor, not a suggestion — `decisions.md` and
 `open-questions.md` created empty on day one are what stop a folder from becoming a pile
 of facts with no memory of *why*.
+
+Add `CLAUDE.md` (from `templates/CLAUDE.template.md`, no front matter) whenever Claude
+Code will work in the folder. By default Claude Code skips `AGENTS.md` if a `CLAUDE.md`,
+`.claude/CLAUDE.md` or `CLAUDE.local.md` exists in the working directory or above it. A
+private `CLAUDE.local.md` is enough to trigger that, and the setting that changes it is
+ignored in the project's own settings files. The import loads `AGENTS.md` either way. If a
+`CLAUDE.md` already exists there, add the line `@AGENTS.md` to it instead of replacing it;
+it stays exempt from front matter, because it belongs to Claude Code.
 
 ## Choosing categories
 

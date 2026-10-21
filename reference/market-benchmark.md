@@ -47,6 +47,17 @@ tags: [research, benchmark, mcp, positioning]
 
 # Market benchmark — context-standard against current tools
 
+## Contents
+
+- TL;DR
+- Comparison table
+- What only context-standard does
+- Where it is behind, and what to copy
+- Implications for the MCP
+- Positioning sentence for the README
+- Assumptions made
+- Open questions
+
 All sources were read on 2026-10-21. "Not documented" means not on the pages listed in
 `sources:`, not proven absent. AGENTS.md and llms.txt facts live in `ctx/reference/agents-md`
 and `ctx/reference/llms-txt` and are not restated here. Star counts are `stargazers_count`
@@ -135,8 +146,10 @@ wikilinks (basic-memory has permalinks and `[[relations]]`), nearest-file preced
 
 ## Where it is behind, and what to copy
 
-Ordered by value for effort. These are recommendations only; no rule was changed in this
-edit.
+Ordered by value for effort. These were recommendations only when written; no rule was
+changed in that edit. [DECISION, 2026-10-21] Items 2, 3 and 7 were adopted later the same
+day: the companion `CLAUDE.md` template, tables of contents, the evaluations in `evals/`,
+and the exact definition of `drifted` (see `CHANGELOG.md`).
 
 1. [INFERENCE, 2026-10-21] **A validator — copy `skills-ref validate`, basic-memory
    `schema_validate` / `doctor`, and Spec Kit `analyze`.** Seven of the eleven audit
@@ -232,7 +245,8 @@ What not to build, because others do it better:
   official usage figure.
 - [ASSUMPTION, 2026-10-21] `drifted` in `ctx_manifest` reads ">2x past `review_by`" as
   "more than one full volatility interval past `review_by`". Falsified if the standard
-  defines it otherwise (see item 7 above).
+  defines it otherwise (see item 7 above). Resolved 2026-10-21: `ctx/standard/maintenance`
+  now defines it exactly this way.
 - [DECISION, 2026-10-21] One tag rule for the whole comparison table, stated above it,
   instead of a tag in every cell, to keep the table readable.
 - [DECISION, 2026-10-21] Vendor benchmark scores are left out of the table: they measure

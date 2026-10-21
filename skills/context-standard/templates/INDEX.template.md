@@ -23,6 +23,7 @@ Read `AGENTS.md` first.
 | `decisions.md` | You are making, revisiting, or contradicting a choice. |
 | `open-questions.md` | You are looking for what we don't know, or you found a new unknown. |
 | `CHANGELOG.md` | You need to know what changed recently. |
+| `CLAUDE.md` | Never; it only imports `AGENTS.md` for Claude Code. <Drop this row if the folder has no CLAUDE.md.> |
 
 ## <category>/
 

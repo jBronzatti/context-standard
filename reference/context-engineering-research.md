@@ -18,6 +18,18 @@ tags: [research, context-engineering]
 
 # Context engineering — evidence base
 
+## Contents
+
+- Context rot
+- System prompt / instruction calibration
+- Just-in-time retrieval
+- Progressive disclosure
+- Long-horizon techniques
+- Knowledge-file vs recipe separation
+- Auto-generated context hurts
+- RAG vs resident context
+- Open questions
+
 ## Context rot
 
 [OFFICIAL] Anthropic's engineering guidance states that model accuracy declines as token

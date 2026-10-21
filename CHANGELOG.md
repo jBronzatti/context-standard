@@ -17,6 +17,38 @@ Append at the top. Log reversals, corrections, deletions, promotions and audits.
 Do not log typos.
 
 ## 2026-10-21
+- [DECISION] **Defined** `drifted` exactly (`05-maintenance-protocol.md` § Staleness,
+  `SKILL.md`): today > `review_by` + one review interval of the file's current
+  `volatility`. Was ">2x past `review_by`", which did not say twice what. Every file now
+  has one verdict, `fresh`, `unverified` or `drifted`, and § Staleness fixes the date
+  arithmetic (calendar days; a missing day of the month clamps to its last day) so tools
+  agree. `04-navigation-protocol.md` and `01-principles.md` §8 now say a drifted file is
+  verified before use, and the audit checklist asks for files past `review_by` to be
+  listed as unverified or drifted.
+- [DECISION] **Added** `templates/CLAUDE.template.md`, a one-line `CLAUDE.md` containing
+  `@AGENTS.md`, as a root file required when Claude Code works in the folder
+  (`03-folder-architecture.md`, `SKILL.md`). By default Claude Code skips `AGENTS.md` when
+  a `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md` exists in or above its working
+  directory, and the setting that changes this is ignored in a project's own settings
+  files. An existing `CLAUDE.md` gets the line added instead. The INDEX template lists it.
+- [DECISION] **Exempted** every `CLAUDE.md` from front matter, like `README.md`
+  (`02-file-format.md`, `SKILL.md`): it belongs to Claude Code, which reads it as
+  instructions, including when it already had content before the import was added. It is
+  still listed in `INDEX.md`.
+- **Added** a root `CLAUDE.md` with `@AGENTS.md` to this repository, which follows its own
+  rule, and listed it in `INDEX.md`.
+- [DECISION] **Added** a `## Contents` list at the top of every reference longer than 100
+  lines: `01`, `02`, `03`, `05` and `06` in the skill, and
+  `reference/context-engineering-research.md` and `reference/market-benchmark.md`, per the
+  Agent Skills best practices. `AGENTS.md` states this as a rule for this repository.
+- [DECISION] **Added** `evals/`: the four manual test sessions of 2026-10-20 (pull request
+  #1) as versioned evaluations, three that must trigger the skill and one that must not,
+  with fixtures. Format: Anthropic's Agent Skills best practices, plus `should_trigger`
+  from the agentskills.io trigger-query format. Kept outside the skill so installing it
+  does not copy fixtures. Listed in `INDEX.md`, `AGENTS.md` and `README.md`; `AGENTS.md`
+  warns that fixture `AGENTS.md` files govern nothing.
+- **Marked** recommendations 2, 3 and 7 of `reference/market-benchmark.md` as adopted, and
+  its `drifted` assumption as resolved.
 - **Added** `reference/market-benchmark.md` (`ctx/reference/market-benchmark`) — the
   standard compared with 16 tools: Agent Skills, AGENTS.md, Claude Code memory, Cursor,
   Copilot, llms.txt, Cline Memory Bank, Kiro, Spec Kit, five MCP servers (official memory,

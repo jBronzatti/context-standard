@@ -14,8 +14,18 @@ tags: [meta, format, schema]
 
 # File format
 
+## Contents
+
+- Front-matter schema
+  - Field notes
+- Claim tags
+- Body structure
+- Style
+
 Every `.md` file in a context folder — including `INDEX.md` and `AGENTS.md` — opens with
-YAML front matter. No exceptions. `README.md` is exempt because it is for humans.
+YAML front matter. Two exceptions: `README.md`, because it is for humans, and `CLAUDE.md`,
+because it belongs to Claude Code, which reads it as instructions (see
+`ctx/standard/folder-architecture`). Both are still listed in `INDEX.md`.
 
 ## Front-matter schema
 
