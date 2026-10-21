@@ -23,8 +23,9 @@ context folder is written, organised, navigated and maintained — including thi
   table tells you which single reference to open next.
 - **The rules, in full:** `skills/context-standard/references/`.
 - **The files to copy:** `skills/context-standard/templates/`.
-- **The evidence behind the rules:** `reference/`. Only when you are arguing for or
-  against changing a rule.
+- **The evidence behind the rules, and how they compare with other tools:** `reference/`.
+  Only when you are arguing for or against changing a rule, or building tooling on the
+  standard.
 - **Everything else:** `INDEX.md`.
 
 ## Changing the standard

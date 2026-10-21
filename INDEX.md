@@ -37,6 +37,7 @@ Read `AGENTS.md` first. This index tells you which file answers which question.
 | `reference/agents-md-convention.md` | You are integrating with external tooling, or want the AGENTS.md convention as others define it. |
 | `reference/llms-txt-convention.md` | You are exposing context to external agents or publishing docs for machine consumption. |
 | `reference/knowledge-base-patterns.md` | You are designing a larger structure: wiki-plus-recipes separation, dependency graphs, RAG-vs-context boundaries. |
+| `reference/market-benchmark.md` | You are arguing that a rule is redundant with an existing tool, deciding whether to copy a feature from another context or memory tool, designing an MCP server on the standard, or writing positioning text. |
 
 ## Downstream folders governed by this standard (example)
 
