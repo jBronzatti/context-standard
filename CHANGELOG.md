@@ -16,6 +16,24 @@ tags: [meta, changelog]
 Append at the top. Log reversals, corrections, deletions, promotions and audits.
 Do not log typos.
 
+## 2026-10-21
+- **Added** `reference/market-benchmark.md` (`ctx/reference/market-benchmark`) — the
+  standard compared with 16 tools: Agent Skills, AGENTS.md, Claude Code memory, Cursor,
+  Copilot, llms.txt, Cline Memory Bank, Kiro, Spec Kit, five MCP servers (official memory,
+  basic-memory, mem0/OpenMemory, Graphiti, Context7), Letta memory blocks and the
+  Anthropic memory tool; plus the tools a proposed MCP server should and should not
+  offer. Listed in `INDEX.md`. No rule changed; its recommendations are not adopted yet.
+- **Corrected** `reference/agents-md-convention.md`: agents.md no longer states "60+
+  tools"; it now cites Linux Foundation stewardship and "over 60k open-source projects".
+  Added that Claude Code, by default, skips `AGENTS.md` when a `CLAUDE.md`,
+  `.claude/CLAUDE.md` or `CLAUDE.local.md` exists. `verified:` is not bumped, because the
+  ro14nd claims were not re-checked.
+- **Changed** `volatility` of `reference/agents-md-convention.md` from `slow` to `fast`
+  (`review_by` 2027-03-14 → 2026-11-14): it now holds tool-loading behaviour that changes
+  between versions.
+- **Widened** the `reference/` line in `AGENTS.md` to cover comparisons with other tools
+  and building tooling on the standard.
+
 ## 2026-10-20
 - [DECISION] **Broadened** `[MEASURED]` to "measured with method and sample described — by
   a third party or by us" (`SKILL.md`, `02-file-format.md`, `07-research-provenance.md`).

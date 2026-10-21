@@ -5,12 +5,13 @@ summary: What the external AGENTS.md convention specifies, how it differs from w
 read_when: ["you are integrating with external agent tooling", "you want the AGENTS.md convention as others define it", "you are deciding what goes in an AGENTS.md"]
 status: stable
 confidence: high
-volatility: slow
+volatility: fast
 verified: 2026-09-14
-review_by: 2027-03-14
+review_by: 2026-11-14
 sources:
   - https://agents.md/
   - https://ro14nd.de/what-goes-in-agents-md/
+  - https://code.claude.com/docs/en/memory
 tags: [research, convention, agents-md]
 ---
 
@@ -20,8 +21,21 @@ tags: [research, convention, agents-md]
 
 [OFFICIAL] An open format described as *"a README for agents: a dedicated, predictable
 place to provide the context and instructions to help AI coding agents work on your
-project."* Compatible with 60+ agent tools. Deliberately just Markdown — no mandated
-schema.
+project."* Deliberately just Markdown — no mandated schema.
+
+[OFFICIAL, 2026-10-21] Now *"stewarded by the Agentic AI Foundation under the Linux
+Foundation"*, and *"used by over 60k open-source projects"* (self-reported). The site no
+longer states a tool count; its logo list names 23 agents. Was "compatible with 60+ agent
+tools" when this file was written on 2026-09-14.
+
+[OFFICIAL, 2026-10-21] Claude Code (v2.1.277+), by default, reads `AGENTS.md` only when
+there is no `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md` in the working directory
+or any directory above it. `~/.claude/CLAUDE.md`, managed `CLAUDE.md` and `.claude/rules/`
+do not count. A `CLAUDE.md` can pull it in with `@AGENTS.md`. The *Project instructions*
+setting (`claude-md-or-agents-md` default, `claude-md-and-agents-md`, `claude-md`,
+`managed-only`) is honoured only in user, `--settings` or managed settings, and ignored
+in project and local settings files (https://code.claude.com/docs/en/memory). What this
+means for the standard: `ctx/reference/market-benchmark`.
 
 ## What the spec actually mandates
 
@@ -72,6 +86,6 @@ Markdown.
 
 ## When to care
 
-If this workspace ever gets opened by an external coding agent, Cursor, Codex, or any of
-the 60+ tools honouring the convention, our `AGENTS.md` files are already the file they
+If this workspace ever gets opened by an external coding agent, Cursor, Codex, or any
+other tool honouring the convention, our `AGENTS.md` files are already the file they
 look for. That is the only reason we use the name.
