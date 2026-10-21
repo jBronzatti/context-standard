@@ -1,0 +1,74 @@
+{
+  "description": "Checklist item 1: the root has no INDEX.md. One index-missing finding and no not-indexed findings; the manifest's index is null.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": null,
+        "files": [
+          {
+            "path": "notes.md",
+            "id": "fx/index-missing/notes",
+            "title": "Notes",
+            "summary": "Fixture file for notes.",
+            "read_when": [
+              "you are testing notes",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 2,
+        "findings": [
+          {
+            "item": 1,
+            "rule": "index-missing",
+            "file": "INDEX.md",
+            "line": null,
+            "detail": "INDEX.md does not exist"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    }
+  ]
+}

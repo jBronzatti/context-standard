@@ -216,7 +216,8 @@ answer for the same files on the same date.
 [OPEN, 2026-10-21] Read-only server (patches) or write tools. Read-only matches
 "context files are notes", avoids Graphiti's no-auth risk, and keeps the human review
 gate. Write tools are cheaper per update (`ctx/standard/principles` §9). Resolved by: the
-user's call before the MCP is implemented.
+user's call before the MCP is implemented. [DECISION, 2026-10-21] Resolved: read-only in
+v1, with `ctx_manifest`, `ctx_get` and `ctx_audit`; see `ctx/mcp/spec`.
 
 What not to build, because others do it better:
 - [INFERENCE, 2026-10-21] Vector or graph memory (mem0, Graphiti, the official memory

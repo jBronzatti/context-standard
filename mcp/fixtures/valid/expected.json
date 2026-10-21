@@ -1,0 +1,360 @@
+{
+  "description": "A clean folder: no findings. Covers tagged and masked numbers, a table, a fence, exempt README.md and CLAUDE.md, a nested context folder that is excluded, used_by that ignores dependents in the nested folder, an id resolved upward, ctx_get from both folders, and five error codes. stack/old-hosting.md is superseded, so it is left out of the index without a finding.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/valid/changelog",
+            "title": "Changelog — valid fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-10-01",
+            "review_by": "2026-12-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/valid/decisions",
+            "title": "Decisions — valid fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/valid/open-questions",
+            "title": "Open questions — valid fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-10-01",
+            "review_by": "2026-12-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "stack/api-limits.md",
+            "id": "fx/valid/stack/api-limits",
+            "title": "API limits",
+            "summary": "What the API allows per key, and what we measured.",
+            "read_when": [
+              "you are calling the API",
+              "you are handling a 429 response"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-09-30",
+            "review_by": "2026-11-30",
+            "freshness": "fresh"
+          },
+          {
+            "path": "stack/hosting.md",
+            "id": "fx/valid/stack/hosting",
+            "title": "Hosting",
+            "summary": "Where the service runs and why.",
+            "read_when": [
+              "you are changing where the service runs",
+              "you are sizing the service"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "stack/old-hosting.md",
+            "id": "fx/valid/stack/old-hosting",
+            "title": "Old hosting",
+            "summary": "Where the service ran before the move to one region.",
+            "read_when": [
+              "you are tracing why hosting changed",
+              "you need the old hosting setup"
+            ],
+            "do_not_read_when": [],
+            "status": "superseded",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 10,
+        "findings": [],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context/feature-x",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 3,
+        "findings": [],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/valid/stack/api-limits",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/valid/stack/api-limits",
+        "path": "stack/api-limits.md",
+        "front_matter": {
+          "id": "fx/valid/stack/api-limits",
+          "title": "API limits",
+          "summary": "What the API allows per key, and what we measured.",
+          "read_when": [
+            "you are calling the API",
+            "you are handling a 429 response"
+          ],
+          "status": "stable",
+          "confidence": "high",
+          "volatility": "fast",
+          "verified": "2026-09-30",
+          "review_by": "2026-11-30",
+          "sources": [
+            "https://api.example.com/v1/limits"
+          ],
+          "used_by": [
+            "fx/valid/stack/hosting"
+          ],
+          "tags": [
+            "api",
+            "limits"
+          ]
+        },
+        "body": "\n# API limits\n\n## TL;DR\n\n- [OFFICIAL, 2026-09] The API allows 100 requests per minute per key.\n- [MEASURED, 2026-09] 429s start at 120 requests per minute — 4 runs × 250 requests, client log.\n- [INFERENCE] The documented limit is conservative by about 20%.\n\n## Details\n\n[OFFICIAL, 2026-09] Each response carries the header `X-RateLimit-Remaining: 99`. See\nctx/standard/principles §3, decision D-001, client v2.1 and PR #1.\n\n| Plan | Requests per minute |\n|---|---|\n| Basic | 100 |\n\n```text\nretries = 4\n```\n\nVerified on 2026-09-30 against https://api.example.com/v1/limits.\n",
+        "freshness": "fresh",
+        "depends_on": [],
+        "supersedes": [],
+        "dependents": [
+          {
+            "id": "fx/valid/stack/hosting",
+            "path": "stack/hosting.md"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/valid/stack/api-limits",
+        "folder": "context/feature-x",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/valid/stack/api-limits",
+        "path": "../stack/api-limits.md",
+        "front_matter": {
+          "id": "fx/valid/stack/api-limits",
+          "title": "API limits",
+          "summary": "What the API allows per key, and what we measured.",
+          "read_when": [
+            "you are calling the API",
+            "you are handling a 429 response"
+          ],
+          "status": "stable",
+          "confidence": "high",
+          "volatility": "fast",
+          "verified": "2026-09-30",
+          "review_by": "2026-11-30",
+          "sources": [
+            "https://api.example.com/v1/limits"
+          ],
+          "used_by": [
+            "fx/valid/stack/hosting"
+          ],
+          "tags": [
+            "api",
+            "limits"
+          ]
+        },
+        "body": "\n# API limits\n\n## TL;DR\n\n- [OFFICIAL, 2026-09] The API allows 100 requests per minute per key.\n- [MEASURED, 2026-09] 429s start at 120 requests per minute — 4 runs × 250 requests, client log.\n- [INFERENCE] The documented limit is conservative by about 20%.\n\n## Details\n\n[OFFICIAL, 2026-09] Each response carries the header `X-RateLimit-Remaining: 99`. See\nctx/standard/principles §3, decision D-001, client v2.1 and PR #1.\n\n| Plan | Requests per minute |\n|---|---|\n| Basic | 100 |\n\n```text\nretries = 4\n```\n\nVerified on 2026-09-30 against https://api.example.com/v1/limits.\n",
+        "freshness": "fresh",
+        "depends_on": [],
+        "supersedes": [],
+        "dependents": [
+          {
+            "id": "fx/valid/stack/hosting",
+            "path": "../stack/hosting.md"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/valid/feature-x/retries",
+        "folder": "context/feature-x",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/valid/feature-x/retries",
+        "path": "retries.md",
+        "front_matter": {
+          "id": "fx/valid/feature-x/retries",
+          "title": "Retries",
+          "summary": "When feature-x retries a request.",
+          "read_when": [
+            "you are changing retries",
+            "you are handling a 429 in feature-x"
+          ],
+          "status": "stable",
+          "confidence": "high",
+          "volatility": "slow",
+          "verified": "2026-10-01",
+          "review_by": "2027-04-01",
+          "depends_on": [
+            "fx/valid/stack/api-limits"
+          ],
+          "tags": [
+            "retries"
+          ]
+        },
+        "body": "\n# Retries\n\n[DECISION] Retry on 429 only, within the limit in the parent folder.\n",
+        "freshness": "fresh",
+        "depends_on": [
+          {
+            "id": "fx/valid/stack/api-limits",
+            "path": "../stack/api-limits.md"
+          }
+        ],
+        "supersedes": [],
+        "dependents": []
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/valid/nope",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "error": "ID_NOT_FOUND"
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "error": "INVALID_INPUT"
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-02-30"
+      },
+      "error": "INVALID_AS_OF"
+    },
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": ".",
+        "as_of": "2026-10-21"
+      },
+      "error": "NOT_A_CONTEXT_FOLDER"
+    },
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "missing",
+        "as_of": "2026-10-21"
+      },
+      "error": "FOLDER_NOT_FOUND"
+    }
+  ]
+}

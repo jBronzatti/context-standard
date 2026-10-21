@@ -1,0 +1,214 @@
+{
+  "description": "Checklist item 4: no front matter, front matter that is not YAML, empty front matter, front matter that is a scalar, missing fields, invalid values, a list field holding a string, and read_when out of range. CLAUDE.md with extra content stays exempt.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "bad-yaml.md",
+            "id": null,
+            "title": null,
+            "summary": null,
+            "read_when": [],
+            "do_not_read_when": [],
+            "status": null,
+            "confidence": null,
+            "volatility": null,
+            "verified": null,
+            "review_by": null,
+            "freshness": "unknown"
+          },
+          {
+            "path": "empty-front-matter.md",
+            "id": null,
+            "title": null,
+            "summary": null,
+            "read_when": [],
+            "do_not_read_when": [],
+            "status": null,
+            "confidence": null,
+            "volatility": null,
+            "verified": null,
+            "review_by": null,
+            "freshness": "unknown"
+          },
+          {
+            "path": "fields.md",
+            "id": null,
+            "title": "Fields",
+            "summary": "A file with missing and invalid fields.",
+            "read_when": [],
+            "do_not_read_when": [],
+            "status": null,
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": null,
+            "review_by": null,
+            "freshness": "unknown"
+          },
+          {
+            "path": "no-front-matter.md",
+            "id": null,
+            "title": null,
+            "summary": null,
+            "read_when": [],
+            "do_not_read_when": [],
+            "status": null,
+            "confidence": null,
+            "volatility": null,
+            "verified": null,
+            "review_by": null,
+            "freshness": "unknown"
+          },
+          {
+            "path": "scalar-yaml.md",
+            "id": null,
+            "title": null,
+            "summary": null,
+            "read_when": [],
+            "do_not_read_when": [],
+            "status": null,
+            "confidence": null,
+            "volatility": null,
+            "verified": null,
+            "review_by": null,
+            "freshness": "unknown"
+          },
+          {
+            "path": "wrong-type.md",
+            "id": "fx/front-matter/wrong-type",
+            "title": "Wrong type",
+            "summary": "Fixture file for wrong type.",
+            "read_when": [
+              "you are testing wrong type",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 9,
+        "findings": [
+          {
+            "item": 4,
+            "rule": "invalid-front-matter",
+            "file": "bad-yaml.md",
+            "line": 1,
+            "detail": "front matter is not a YAML mapping"
+          },
+          {
+            "item": 4,
+            "rule": "invalid-front-matter",
+            "file": "empty-front-matter.md",
+            "line": 1,
+            "detail": "front matter is not a YAML mapping"
+          },
+          {
+            "item": 4,
+            "rule": "missing-field",
+            "file": "fields.md",
+            "line": null,
+            "detail": "missing required field review_by"
+          },
+          {
+            "item": 4,
+            "rule": "missing-field",
+            "file": "fields.md",
+            "line": null,
+            "detail": "missing required field tags"
+          },
+          {
+            "item": 4,
+            "rule": "invalid-field",
+            "file": "fields.md",
+            "line": 2,
+            "detail": "id must be a lowercase path-like id; found \"Fx/Front-Matter/Fields\""
+          },
+          {
+            "item": 4,
+            "rule": "invalid-field",
+            "file": "fields.md",
+            "line": 5,
+            "detail": "read_when must be a list of 2-5 non-empty strings; found [\"you are testing field validation\"]"
+          },
+          {
+            "item": 4,
+            "rule": "invalid-field",
+            "file": "fields.md",
+            "line": 6,
+            "detail": "status must be one of stable, draft, contested, superseded; found \"final\""
+          },
+          {
+            "item": 4,
+            "rule": "invalid-field",
+            "file": "fields.md",
+            "line": 9,
+            "detail": "verified must be a date in YYYY-MM-DD form; found \"2026-02-30\""
+          },
+          {
+            "item": 4,
+            "rule": "no-front-matter",
+            "file": "no-front-matter.md",
+            "line": null,
+            "detail": "no front matter"
+          },
+          {
+            "item": 4,
+            "rule": "invalid-front-matter",
+            "file": "scalar-yaml.md",
+            "line": 1,
+            "detail": "front matter is not a YAML mapping"
+          },
+          {
+            "item": 4,
+            "rule": "invalid-field",
+            "file": "wrong-type.md",
+            "line": 11,
+            "detail": "tags must be a list of strings; found \"fixture\""
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    }
+  ]
+}
