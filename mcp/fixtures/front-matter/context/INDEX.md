@@ -18,6 +18,10 @@ Read `AGENTS.md` first.
 | File | Read it when |
 |---|---|
 | `AGENTS.md` | Always, first. |
+| `drafts/plan.md` | You need the plan. |
+| `CHANGELOG.md` | You need to know what changed. |
+| `decisions.md` | You are making or revisiting a choice. |
+| `open-questions.md` | You are looking for what we do not know. |
 | `CLAUDE.md` | Never. |
 | `no-front-matter.md` | Never. |
 | `bad-yaml.md` | Never. |

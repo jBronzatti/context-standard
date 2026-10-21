@@ -13,6 +13,23 @@
         "index": "INDEX.md",
         "files": [
           {
+            "path": "CHANGELOG.md",
+            "id": "fx/unresolved-id/changelog",
+            "title": "Changelog — unresolved-id fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "a.md",
             "id": "fx/unresolved-id/a",
             "title": "A",
@@ -45,6 +62,40 @@
             "verified": "2026-10-01",
             "review_by": "2027-04-01",
             "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/unresolved-id/decisions",
+            "title": "Decisions — unresolved-id fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/unresolved-id/open-questions",
+            "title": "Open questions — unresolved-id fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
           }
         ]
       }
@@ -57,7 +108,7 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 4,
+        "files_checked": 7,
         "findings": [
           {
             "item": 2,

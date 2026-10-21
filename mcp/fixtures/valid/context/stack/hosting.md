@@ -8,7 +8,7 @@ confidence: high
 volatility: slow
 verified: 2026-10-01
 review_by: 2027-04-01
-depends_on: [fx/valid/stack/api-limits]
+depends_on: [fx/valid/stack/api-limits, fx/valid/vendor/limits]
 supersedes: [fx/valid/stack/old-hosting]
 tags: [hosting]
 ---

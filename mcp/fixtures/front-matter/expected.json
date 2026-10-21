@@ -1,5 +1,5 @@
 {
-  "description": "Checklist item 4: no front matter, front matter that is not YAML, empty front matter, front matter that is a scalar, missing fields, invalid values, a list field holding a string, and read_when out of range. CLAUDE.md with extra content stays exempt.",
+  "description": "Checklist item 4: no front matter, front matter that is not YAML, empty front matter, front matter that is a scalar, missing fields, invalid values, a list field holding a string, read_when out of range, and an exclude holding a pattern that starts with /, which excludes nothing, so drafts/plan.md stays in. CLAUDE.md with extra content stays exempt.",
   "calls": [
     {
       "tool": "ctx_manifest",
@@ -13,6 +13,23 @@
         "index": "INDEX.md",
         "files": [
           {
+            "path": "CHANGELOG.md",
+            "id": "fx/front-matter/changelog",
+            "title": "Changelog — front-matter fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "bad-yaml.md",
             "id": null,
             "title": null,
@@ -25,6 +42,40 @@
             "verified": null,
             "review_by": null,
             "freshness": "unknown"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/front-matter/decisions",
+            "title": "Decisions — front-matter fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "drafts/plan.md",
+            "id": "fx/front-matter/drafts/plan",
+            "title": "Plan",
+            "summary": "A file that an invalid exclude does not remove.",
+            "read_when": [
+              "you are testing that an invalid exclude excludes nothing",
+              "you need the plan"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
           },
           {
             "path": "empty-front-matter.md",
@@ -69,6 +120,23 @@
             "freshness": "unknown"
           },
           {
+            "path": "open-questions.md",
+            "id": "fx/front-matter/open-questions",
+            "title": "Open questions — front-matter fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "scalar-yaml.md",
             "id": null,
             "title": null,
@@ -110,8 +178,15 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 9,
+        "files_checked": 13,
         "findings": [
+          {
+            "item": 4,
+            "rule": "invalid-field",
+            "file": "AGENTS.md",
+            "line": 11,
+            "detail": "exclude must be a list of relative glob patterns; found [\"drafts/**\",\"/abs/*.md\"]"
+          },
           {
             "item": 4,
             "rule": "invalid-front-matter",

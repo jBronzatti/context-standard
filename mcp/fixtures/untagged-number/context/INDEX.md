@@ -18,4 +18,7 @@ Read `AGENTS.md` first.
 | File | Read it when |
 |---|---|
 | `AGENTS.md` | Always, first. |
+| `CHANGELOG.md` | You need to know what changed. |
+| `decisions.md` | You are making or revisiting a choice. |
+| `open-questions.md` | You are looking for what we do not know. |
 | `numbers.md` | You are testing the body scan. |

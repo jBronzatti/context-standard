@@ -1,0 +1,166 @@
+{
+  "description": "Checklist item 12: a review_by set from the wrong volatility's interval and one a day late are reported; one computed through the end-of-month clamp (2026-08-31 + 6 months = 2027-02-28) is not.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/review-by/changelog",
+            "title": "Changelog — review-by fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "clamped.md",
+            "id": "fx/review-by/clamped",
+            "title": "Clamped",
+            "summary": "A slow file verified on the last day of August.",
+            "read_when": [
+              "you are testing review_by",
+              "you are testing the review interval"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-08-31",
+            "review_by": "2027-02-28",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/review-by/decisions",
+            "title": "Decisions — review-by fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "off-by-one.md",
+            "id": "fx/review-by/off-by-one",
+            "title": "Off by one",
+            "summary": "A static file whose review_by is one day late.",
+            "read_when": [
+              "you are testing review_by",
+              "you are testing the review interval"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "static",
+            "verified": "2026-10-01",
+            "review_by": "2027-10-02",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/review-by/open-questions",
+            "title": "Open questions — review-by fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "wrong-interval.md",
+            "id": "fx/review-by/wrong-interval",
+            "title": "Wrong interval",
+            "summary": "A fast file whose review_by uses the slow interval.",
+            "read_when": [
+              "you are testing review_by",
+              "you are testing the review interval"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-09-15",
+            "review_by": "2027-03-15",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 8,
+        "findings": [
+          {
+            "item": 12,
+            "rule": "review-by-mismatch",
+            "file": "off-by-one.md",
+            "line": 10,
+            "detail": "review_by 2027-10-02 should be 2027-10-01: verified 2026-10-01 plus 12 months (static)"
+          },
+          {
+            "item": 12,
+            "rule": "review-by-mismatch",
+            "file": "wrong-interval.md",
+            "line": 10,
+            "detail": "review_by 2027-03-15 should be 2026-11-15: verified 2026-09-15 plus 2 months (fast)"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    }
+  ]
+}

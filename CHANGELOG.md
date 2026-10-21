@@ -17,6 +17,26 @@ Append at the top. Log reversals, corrections, deletions, promotions and audits.
 Do not log typos.
 
 ## 2026-10-21
+- [DECISION] **Aligned** the MCP spec with the decisions below it in this log, which
+  resolve its four `[OPEN]` items (exclusion, superseded entries, extra checks, table
+  scan); a dangling index entry under an excluded path is still reported:
+  - `exclude`: excluded files are not files of the folder, so `ctx_manifest`, `ctx_audit`
+    and `files_checked` leave them out, and an index entry that matches a pattern is
+    ignored. Their ids still resolve, after the folder's files and before an ancestor's,
+    and `ctx_get` can return one. `mcp/SPEC.md` § Folders and files defines the pattern
+    matching.
+  - Item 1: a superseded file must not be indexed. The new rule
+    `index-entry-superseded` reports an entry that resolves to one.
+  - Items 12 and 13 run in v1, as `review-by-mismatch` and `root-file-missing`. The
+    `sources`-with-`[OFFICIAL]` rule and the table scan are deferred to v1.1.
+  - The plugin question points to `ctx/open-questions`.
+  - The `manual` texts moved to `mcp/audit-checks.md`, so `SPEC.md` stays under 400
+    lines.
+- **Updated** the fixtures. Every fixture folder except `index-missing` now has the five
+  root files, so each reports only its planted defects; `index-missing` now also pins
+  item 13. `valid` pins `exclude`, `index-sync` an indexed superseded file, and
+  `front-matter` an invalid `exclude`. A new `review-by` fixture pins item 12. Every
+  `expected.json` was regenerated, and `mcp/fixtures.md` lists eleven fixtures.
 - [DECISION] **Added** `mcp/SPEC.md` (`ctx/mcp/spec`), `mcp/audit-checks.md`
   (`ctx/mcp/audit-checks`) and `mcp/fixtures.md` (`ctx/mcp/fixtures`): the specification of a local, read-only MCP server over stdio,
   in TypeScript, with three tools, `ctx_manifest`, `ctx_get` and `ctx_audit` (only the

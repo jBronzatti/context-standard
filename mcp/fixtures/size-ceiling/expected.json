@@ -13,6 +13,40 @@
         "index": "INDEX.md",
         "files": [
           {
+            "path": "CHANGELOG.md",
+            "id": "fx/size-ceiling/changelog",
+            "title": "Changelog — size-ceiling fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/size-ceiling/decisions",
+            "title": "Decisions — size-ceiling fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "long.md",
             "id": "fx/size-ceiling/long",
             "title": "Long",
@@ -249,6 +283,23 @@
             "verified": "2026-10-01",
             "review_by": "2027-04-01",
             "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/size-ceiling/open-questions",
+            "title": "Open questions — size-ceiling fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
           }
         ]
       }
@@ -261,7 +312,7 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 16,
+        "files_checked": 19,
         "findings": [
           {
             "item": 9,

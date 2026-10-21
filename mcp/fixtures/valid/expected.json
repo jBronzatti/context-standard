@@ -1,5 +1,5 @@
 {
-  "description": "A clean folder: no findings. Covers tagged and masked numbers, a table, a fence, exempt README.md and CLAUDE.md, a nested context folder that is excluded, used_by that ignores dependents in the nested folder, an id resolved upward, ctx_get from both folders, and five error codes. stack/old-hosting.md is superseded, so it is left out of the index without a finding.",
+  "description": "A clean folder: no findings. Covers tagged and masked numbers, a table, a fence, exempt README.md and CLAUDE.md, a nested context folder outside the parent's tree, used_by that ignores dependents in the nested folder, an id resolved upward, ctx_get from both folders, and five error codes. stack/old-hosting.md is superseded, so it is left out of the index without a finding. AGENTS.md excludes vendor/** and *.draft.md: the three excluded files, .hidden.draft.md among them, break several rules but are neither listed nor audited; stack/notes.draft.md stays in, because * does not cross /; the INDEX.md row for the vendor file is ignored; and stack/hosting.md depends on the vendor file's id, which still resolves.",
   "calls": [
     {
       "tool": "ctx_manifest",
@@ -98,6 +98,23 @@
             "freshness": "fresh"
           },
           {
+            "path": "stack/notes.draft.md",
+            "id": "fx/valid/stack/notes-draft",
+            "title": "Notes draft",
+            "summary": "A topic file whose name ends in .draft.md but sits in a category.",
+            "read_when": [
+              "you are testing that * does not cross /",
+              "you need the stack notes"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "stack/old-hosting.md",
             "id": "fx/valid/stack/old-hosting",
             "title": "Old hosting",
@@ -125,7 +142,7 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 10,
+        "files_checked": 11,
         "findings": [],
         "manual": [
           {
@@ -155,7 +172,7 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 3,
+        "files_checked": 6,
         "findings": [],
         "manual": [
           {
@@ -267,6 +284,89 @@
           {
             "id": "fx/valid/stack/hosting",
             "path": "../stack/hosting.md"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/valid/stack/hosting",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/valid/stack/hosting",
+        "path": "stack/hosting.md",
+        "front_matter": {
+          "id": "fx/valid/stack/hosting",
+          "title": "Hosting",
+          "summary": "Where the service runs and why.",
+          "read_when": [
+            "you are changing where the service runs",
+            "you are sizing the service"
+          ],
+          "status": "stable",
+          "confidence": "high",
+          "volatility": "slow",
+          "verified": "2026-10-01",
+          "review_by": "2027-04-01",
+          "depends_on": [
+            "fx/valid/stack/api-limits",
+            "fx/valid/vendor/limits"
+          ],
+          "supersedes": [
+            "fx/valid/stack/old-hosting"
+          ],
+          "tags": [
+            "hosting"
+          ]
+        },
+        "body": "\n# Hosting\n\n[DECISION] One region, sized for the API limit in `fx/valid/stack/api-limits`.\n",
+        "freshness": "fresh",
+        "depends_on": [
+          {
+            "id": "fx/valid/stack/api-limits",
+            "path": "stack/api-limits.md"
+          },
+          {
+            "id": "fx/valid/vendor/limits",
+            "path": "vendor/upstream/limits.md"
+          }
+        ],
+        "supersedes": [
+          {
+            "id": "fx/valid/stack/old-hosting",
+            "path": "stack/old-hosting.md"
+          }
+        ],
+        "dependents": []
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/valid/vendor/limits",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/valid/vendor/limits",
+        "path": "vendor/upstream/limits.md",
+        "front_matter": {
+          "id": "fx/valid/vendor/limits",
+          "title": "Upstream limits, as the vendor publishes them"
+        },
+        "body": "\nCopied from the vendor. Upstream allows 200 requests per minute.\n",
+        "freshness": "unknown",
+        "depends_on": [],
+        "supersedes": [],
+        "dependents": [
+          {
+            "id": "fx/valid/stack/hosting",
+            "path": "stack/hosting.md"
           }
         ]
       }

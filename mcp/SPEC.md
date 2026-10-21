@@ -54,8 +54,9 @@ the standard disagree, the standard wins and this file is a bug.
 - [DECISION, 2026-10-21] Three tools: `ctx_manifest`, `ctx_get`, `ctx_audit`. Every tool
   declares the annotations `readOnlyHint: true` and `openWorldHint: false`.
 - [DECISION, 2026-10-21] `ctx_audit` runs only the mechanical items of the audit checklist
-  in `SKILL.md` (items 1, 2, 4, 5, 6, 9, 11). It returns the other four (3, 7, 8, 10) as
-  text for the model to judge. Items are numbered in the order `SKILL.md` lists them.
+  in `SKILL.md` (items 1, 2, 4, 5, 6, 9, 11, 12, 13). It returns the other four (3, 7, 8,
+  10) as text for the model to judge. Items are numbered in the order `SKILL.md` lists
+  them.
 - [DECISION, 2026-10-21] Same files, same inputs and same `as_of` give deep-equal output,
   with every array in the order this file specifies for it. Two inputs come from outside
   the files: `as_of`, which defaults to the server machine's local date, and the server's
@@ -71,10 +72,15 @@ the standard disagree, the standard wins and this file is a bug.
 | `ctx_scaffold` | Return the five root files (and `CLAUDE.md`) from the templates as a patch |
 | prompt `update-context` | Walk the model through the write-back table of `SKILL.md` |
 | resource `ctx://<id>` | Expose a file by id for hosts that attach resources |
+| audit rule for `sources` | Report a file that has an `[OFFICIAL]` claim and no `sources`; joins the checklist first |
+| table scan | Scan table cells for untagged numbers, not only paragraphs and list items |
 
 Not planned for any version: vector or graph memory, extraction of memories from
 conversations, library documentation, server-side task-to-file matching, and loading
 `AGENTS.md` or `CLAUDE.md` on the host's behalf. Reasons: `ctx/reference/market-benchmark`.
+
+Shipping the skill and this server together as one Claude Code plugin is an `[OPEN]` for
+after v1: `ctx/open-questions`.
 
 ## Common rules
 
@@ -88,8 +94,18 @@ conversations, library documentation, server-side task-to-file matching, and loa
   `AGENTS.md` (a *nested* context folder), the subtree of any directory whose name starts
   with `.`, and the subtree of any directory named `node_modules`. Symbolic links, to files
   or directories, are ignored.
+- **Excluded files.** The `.md` files of the tree whose path matches a pattern in the
+  usable `exclude` of the root `AGENTS.md` (`ctx/standard/file-format`). The root
+  `AGENTS.md` itself is never excluded. A nested context folder is outside the tree
+  already, so no pattern reaches into it.
 - **Files of a folder.** Every regular file in its tree whose name ends in `.md`
-  (case-sensitive). Other files are never read.
+  (case-sensitive), except excluded files. Other files are never read.
+- **Pattern matching.** Split the pattern and the path on `/`. A pattern segment that is
+  exactly `**` matches zero or more whole path segments. Any other pattern segment
+  matches exactly one path segment: `*` matches any run of characters, the empty run and
+  `.` included; `?` matches one UTF-16 code unit; every other character matches itself,
+  case-sensitively. The
+  pattern must match the whole path: `vendor` does not match `vendor/a.md`.
 - **Paths.** Every path in an output is relative to the folder's root, uses `/`, and has
   no leading `./`. A path into an ancestor folder starts with `../`.
 - **Sort order.** Paths, ids and strings are sorted by UTF-16 code unit, ascending, which
@@ -102,8 +118,10 @@ conversations, library documentation, server-side task-to-file matching, and loa
 - **Exempt names.** `README.md` and `CLAUDE.md` are exempt from front matter, wherever
   they are in the tree (`ctx/standard/file-format`). `CLAUDE.local.md` is not: the
   standard does not name it.
-- **Root files.** `AGENTS.md`, `INDEX.md` and `CHANGELOG.md` directly in the folder root.
-  Files with those names deeper in the tree are ordinary files.
+- **Root files.** `AGENTS.md`, `INDEX.md`, `CHANGELOG.md`, `decisions.md` and
+  `open-questions.md` directly in the folder root, the five that
+  `ctx/standard/folder-architecture` requires. Files with those names deeper in the tree
+  are ordinary files.
 - **Category.** A direct subdirectory of the root that is in the tree.
 
 ### Reading a file
@@ -141,9 +159,11 @@ conversations, library documentation, server-side task-to-file matching, and loa
 | `confidence` | one of `high`, `medium`, `low` |
 | `volatility` | one of `static`, `slow`, `fast` |
 | `verified`, `review_by` | a string `YYYY-MM-DD` that names a real calendar date |
+| `exclude`, in the root `AGENTS.md` only | a list of strings, each split on `/` into segments none of which is empty, `.` or `..` |
 
 - A field's *usable value* is its value if valid, else nothing: tools never guess from an
-  invalid value.
+  invalid value. An invalid `exclude` excludes nothing.
+- `exclude` in any file other than the root `AGENTS.md` is an unknown field.
 - Repeated ids in a list are kept: each occurrence is resolved and reported on its own.
 
 ### Freshness
@@ -167,22 +187,25 @@ Exactly the rule in `ctx/standard/maintenance` § Staleness:
 ### Id resolution and dependents
 
 - The *ids of a folder*: the usable `id` of each of its files.
-- **Resolving an id from folder F:** look in F's files; if no file there has it, look in
-  the nearest ancestor context folder, then the next, and so on. The walk up stops after
+- **Resolving an id from folder F:** search these *sets* of files in order, stopping at
+  the first that holds the id: F's files, F's excluded files, the nearest ancestor context
+  folder's files, its excluded files, the next ancestor's files, and so on. The walk up stops after
   the first directory that contains a `.git` entry (file or directory), or at the
   filesystem root; if F itself contains `.git`, it has no ancestors. An ancestor context
   folder's tree excludes its nested context folders, F included.
-- An id held by one file in the first folder that has it *resolves* to that file. Held by
+- An id held by one file in the first set that has it *resolves* to that file. Held by
   several files there, it is *ambiguous*: `ctx_get` reports `ID_AMBIGUOUS`, `ctx_audit`
   reports `duplicate-id`, and `depends_on` / `supersedes` treat it as resolved.
-- **Dependents of a file X with id I:** the files in the same context folder as X whose
-  usable `depends_on` contains I. Files in other context folders are never dependents
+- **Dependents of a file X with id I:** the files of the context folder whose tree holds
+  X (X may be one of its excluded files) whose usable `depends_on` contains I. Excluded
+  files are never dependents. Files in other context folders are never dependents
   (`ctx/standard/file-format`, `used_by`), even when `ctx_get` is called from one of them:
   a folder cannot see the folders below it, and listing them would cite downhill.
 
 ### Index entries
 
-- *Index files:* the root `INDEX.md`, and every file named `00-index.md` in the tree.
+- *Index files:* among the files of the folder, the root `INDEX.md` and every file named
+  `00-index.md`.
 - An *entry* is found on any body line of an index file outside a fenced code block or
   HTML comment (skipped as in `ctx/mcp/audit-checks` § Body scan, step 1). It is either:
   - the content of an inline code span (matched by ``` `[^`\n]*` ```) that matches
@@ -194,12 +217,16 @@ Exactly the rule in `ctx/standard/maintenance` § Staleness:
 - **Resolving an entry:** in `INDEX.md`, relative to the root. In `<dir>/00-index.md`,
   relative to `<dir>` if a file exists there, else relative to the root. `./` and `..`
   segments are normalised; an entry that leaves the root is ignored. An entry that lands in
-  a nested context folder, or in a directory excluded from the tree, is ignored.
+  a nested context folder, in a directory excluded from the tree, or on an excluded file,
+  is ignored. An entry on a path that matches a usable `exclude` pattern but holds no
+  file is not ignored: it is reported like any entry that resolves to no file.
 - A file is *indexed* if some entry resolves to it.
-- [DECISION, 2026-10-21] A file whose usable `status` is `superseded` need not be indexed:
-  `ctx/standard/maintenance` § Supersession drops it from the index tables, which
-  contradicts the checklist's "every file appears in `INDEX.md`". This spec follows the
-  supersession rule.
+- A file whose usable `status` is `superseded` must not be indexed. Checklist item 1 reads
+  "every file that is not superseded appears in `INDEX.md`, and vice versa", following
+  `ctx/standard/maintenance` § Supersession: `not-indexed` skips such a file, and
+  `index-entry-superseded` reports an entry that resolves to one. Entries come from every
+  body line, not only from tables, so a prose line naming a superseded file is reported
+  too; name it by id instead.
 
 ### Results and errors
 
@@ -217,7 +244,7 @@ Exactly the rule in `ctx/standard/maintenance` § Staleness:
 | `FOLDER_NOT_FOUND` | `folder` does not exist or is not a directory |
 | `NOT_A_CONTEXT_FOLDER` | `folder` has no `AGENTS.md`, or `folder` is omitted and no directory at or above the working directory has one |
 | `ID_NOT_FOUND` | `ctx_get`: the id does not resolve from `folder` |
-| `ID_AMBIGUOUS` | `ctx_get`: the id is held by several files in the first folder that has it |
+| `ID_AMBIGUOUS` | `ctx_get`: the id is held by several files in the first set that has it (see "Id resolution and dependents") |
 
 `folder` may be absolute or relative to the server's working directory. Checks run in
 the order of the table, so a call with a bad `as_of` and a missing folder reports
@@ -247,7 +274,7 @@ type Freshness = "fresh" | "unverified" | "drifted" | "unknown";
   root: string;            // absolute path of the folder, native separators
   as_of: string;
   agents: "AGENTS.md";
-  index: "INDEX.md" | null; // null when the root has no INDEX.md
+  index: "INDEX.md" | null; // null when INDEX.md is not a file of the folder
   files: Array<{
     path: string;
     id: string | null;
@@ -266,7 +293,8 @@ type Freshness = "fresh" | "unverified" | "drifted" | "unknown";
 ```
 
 - `files` lists every file of the folder except the root `AGENTS.md`, the root `INDEX.md`,
-  and exempt names, sorted by `path`. Files without valid front matter are listed too.
+  and exempt names, sorted by `path`. Files without valid front matter are listed too;
+  excluded files are not.
 - Each field holds its usable value, or `null` (`[]` for the two lists) when it has none.
   Strings, and the strings inside the two lists, are trimmed. So a manifest never shows a
   value that fails validation; a duplicate id is still shown.
@@ -304,6 +332,7 @@ type Ref = { id: string | null; path: string | null };
 }
 ```
 
+- An id held by an excluded file resolves like any other, so `ctx_get` can return one.
 - For `depends_on` and `supersedes`, `id` is the listed id, and `path` is the file it
   resolves to (the first by path, if ambiguous), or `null`.
 - For `dependents`, `path` is always set, and `id` is the dependent's usable id or `null`.
@@ -325,23 +354,27 @@ type Ref = { id: string | null; path: string | null };
 
 ```ts
 type Rule =
-  | "index-missing" | "not-indexed" | "index-entry-missing"             // item 1
+  | "index-missing" | "not-indexed" | "index-entry-missing"
+  | "index-entry-superseded"                                           // item 1
   | "unresolved-id" | "duplicate-id"                                   // item 2
   | "no-front-matter" | "invalid-front-matter"
   | "missing-field" | "invalid-field"                                  // item 4
   | "unverified" | "drifted"                                           // item 5
   | "untagged-number"                                                  // item 6
   | "size-ceiling"                                                     // item 9
-  | "used-by-extra" | "used-by-missing";                               // item 11
+  | "used-by-extra" | "used-by-missing"                                // item 11
+  | "review-by-mismatch"                                               // item 12
+  | "root-file-missing";                                               // item 13
 
 {
   root: string;
   as_of: string;
   files_checked: number;   // all files of the folder, exempt names included
   findings: Array<{
-    item: 1 | 2 | 4 | 5 | 6 | 9 | 11;
+    item: 1 | 2 | 4 | 5 | 6 | 9 | 11 | 12 | 13;
     rule: Rule;
-    file: string;          // a path; for a category, the directory path ending in "/"
+    file: string;          // a path; for a category, the directory path ending in "/";
+                           // for a missing root file, its name
     line: number | null;
     detail: string;
   }>;
@@ -350,17 +383,10 @@ type Rule =
 ```
 
 - `findings` is sorted by `file`, then `line` (`null` first), then `rule`, then `detail`.
-- `manual` is always these four, in this order, with this text:
+- `manual` is always the same four entries, in item order.
 
-| item | text |
-|---|---|
-| 3 | `No two files state the same number independently.` |
-| 7 | `` `decisions.md` has no entry contradicted by a topic file. `` |
-| 8 | `` `open-questions.md` has no entry that was silently answered elsewhere. `` |
-| 10 | `` `AGENTS.md` still describes the folder that actually exists. `` |
-
-The checks behind each rule, the exact `detail` strings and the body scan for untagged
-numbers are in `ctx/mcp/audit-checks` (`mcp/audit-checks.md`).
+The checks behind each rule, the exact `detail` strings, the exact `manual` texts and the
+body scan for untagged numbers are in `ctx/mcp/audit-checks` (`mcp/audit-checks.md`).
 
 ## Fixtures
 
@@ -370,19 +396,4 @@ pins: `ctx/mcp/fixtures` (`mcp/fixtures.md`).
 
 ## Open questions
 
-- [OPEN, 2026-10-21] Run on this repository's root, `ctx_audit` would report findings the
-  repository accepts today: the skill's `references/` as not indexed; `SKILL.md` as
-  missing ten fields (`AGENTS.md` exempts it, the standard does not); the `templates/` as
-  having invalid or no front matter (placeholders such as `YYYY-MM-DD`,
-  `CLAUDE.template.md`); and untagged numbers in this file's own rules. Resolved by:
-  deciding whether the skill folder and `mcp/` follow the standard or are excluded from
-  the root context folder, and writing that into the standard.
-- [OPEN, 2026-10-21] `ctx/standard/maintenance` drops superseded files from the index, but
-  the checklist says every file appears in `INDEX.md`. This spec follows the first (see
-  "Index entries"). Resolved by: fixing the checklist wording in `SKILL.md`.
-- [OPEN, 2026-10-21] Should the audit also check that `review_by` equals `verified` plus
-  the interval, that the five root files exist, and that `sources` is present when a
-  claim is `[OFFICIAL]`? All are mechanical, but none is a checklist item today.
-  Resolved by: adding them to the checklist first, then to `ctx_audit`.
-- [OPEN, 2026-10-21] Should numbers in tables be scanned? Resolved by: a real folder where
-  an untagged figure in a table went stale unnoticed.
+None. The four recorded on 2026-10-21 were resolved the same day; `CHANGELOG.md` says how.

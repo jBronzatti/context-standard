@@ -13,6 +13,23 @@
         "index": "INDEX.md",
         "files": [
           {
+            "path": "CHANGELOG.md",
+            "id": "fx/stale/changelog",
+            "title": "Changelog — stale fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "clamped.md",
             "id": "fx/stale/clamped",
             "title": "Clamped",
@@ -28,6 +45,23 @@
             "verified": "2026-05-31",
             "review_by": "2026-07-31",
             "freshness": "drifted"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/stale/decisions",
+            "title": "Decisions — stale fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
           },
           {
             "path": "drifted.md",
@@ -61,6 +95,23 @@
             "volatility": "fast",
             "verified": "2026-08-21",
             "review_by": "2026-10-21",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/stale/open-questions",
+            "title": "Open questions — stale fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
             "freshness": "fresh"
           },
           {
@@ -108,7 +159,7 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 7,
+        "files_checked": 10,
         "findings": [
           {
             "item": 5,
@@ -171,6 +222,23 @@
         "index": "INDEX.md",
         "files": [
           {
+            "path": "CHANGELOG.md",
+            "id": "fx/stale/changelog",
+            "title": "Changelog — stale fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "clamped.md",
             "id": "fx/stale/clamped",
             "title": "Clamped",
@@ -186,6 +254,23 @@
             "verified": "2026-05-31",
             "review_by": "2026-07-31",
             "freshness": "drifted"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/stale/decisions",
+            "title": "Decisions — stale fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
           },
           {
             "path": "drifted.md",
@@ -219,6 +304,23 @@
             "volatility": "fast",
             "verified": "2026-08-21",
             "review_by": "2026-10-21",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/stale/open-questions",
+            "title": "Open questions — stale fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
             "freshness": "fresh"
           },
           {

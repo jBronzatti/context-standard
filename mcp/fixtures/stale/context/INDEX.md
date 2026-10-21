@@ -18,6 +18,9 @@ Read `AGENTS.md` first.
 | File | Read it when |
 |---|---|
 | `AGENTS.md` | Always, first. |
+| `CHANGELOG.md` | You need to know what changed. |
+| `decisions.md` | You are making or revisiting a choice. |
+| `open-questions.md` | You are looking for what we do not know. |
 | `fresh-edge.md` | You are testing fresh edge. |
 | `unverified.md` | You are testing unverified. |
 | `unverified-edge.md` | You are testing unverified edge. |

@@ -13,6 +13,23 @@
         "index": "INDEX.md",
         "files": [
           {
+            "path": "CHANGELOG.md",
+            "id": "fx/used-by/changelog",
+            "title": "Changelog — used-by fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "base.md",
             "id": "fx/used-by/base",
             "title": "Base",
@@ -30,6 +47,23 @@
             "freshness": "fresh"
           },
           {
+            "path": "decisions.md",
+            "id": "fx/used-by/decisions",
+            "title": "Decisions — used-by fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "one.md",
             "id": "fx/used-by/one",
             "title": "One",
@@ -37,6 +71,23 @@
             "read_when": [
               "you are testing one",
               "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/used-by/open-questions",
+            "title": "Open questions — used-by fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
             ],
             "do_not_read_when": [],
             "status": "stable",
@@ -91,7 +142,7 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 6,
+        "files_checked": 9,
         "findings": [
           {
             "item": 11,

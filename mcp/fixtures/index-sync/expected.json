@@ -1,5 +1,5 @@
 {
-  "description": "Checklist item 1: a file in no index, a root INDEX.md entry with no file, and a 00-index.md entry that resolves neither relative to its own directory nor to the root. setup.md is indexed relative to guides/.",
+  "description": "Checklist item 1: a file in no index, a root INDEX.md entry with no file, a 00-index.md entry that resolves neither relative to its own directory nor to the root, an entry for a superseded file, and an entry under an excluded path that holds no file. setup.md is indexed relative to guides/.",
   "calls": [
     {
       "tool": "ctx_manifest",
@@ -12,6 +12,40 @@
         "agents": "AGENTS.md",
         "index": "INDEX.md",
         "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/index-sync/changelog",
+            "title": "Changelog — index-sync fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/index-sync/decisions",
+            "title": "Decisions — index-sync fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
           {
             "path": "guides/00-index.md",
             "id": "fx/index-sync/guides/index",
@@ -64,6 +98,23 @@
             "freshness": "fresh"
           },
           {
+            "path": "open-questions.md",
+            "id": "fx/index-sync/open-questions",
+            "title": "Open questions — index-sync fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
             "path": "orphan.md",
             "id": "fx/index-sync/orphan",
             "title": "Orphan",
@@ -74,6 +125,23 @@
             ],
             "do_not_read_when": [],
             "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "retired.md",
+            "id": "fx/index-sync/retired",
+            "title": "Retired notes",
+            "summary": "Notes replaced by notes.md.",
+            "read_when": [
+              "you are tracing why the notes changed",
+              "you need the old notes"
+            ],
+            "do_not_read_when": [],
+            "status": "superseded",
             "confidence": "high",
             "volatility": "slow",
             "verified": "2026-10-01",
@@ -91,14 +159,28 @@
       },
       "output": {
         "as_of": "2026-10-21",
-        "files_checked": 6,
+        "files_checked": 10,
         "findings": [
+          {
+            "item": 1,
+            "rule": "index-entry-superseded",
+            "file": "INDEX.md",
+            "line": 25,
+            "detail": "lists retired.md, which is superseded"
+          },
           {
             "item": 1,
             "rule": "index-entry-missing",
             "file": "INDEX.md",
-            "line": 22,
+            "line": 26,
             "detail": "lists missing.md, which does not exist"
+          },
+          {
+            "item": 1,
+            "rule": "index-entry-missing",
+            "file": "INDEX.md",
+            "line": 27,
+            "detail": "lists vendor/gone.md, which does not exist"
           },
           {
             "item": 1,

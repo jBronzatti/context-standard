@@ -56,7 +56,7 @@ Read `AGENTS.md` first. This index tells you which file answers which question.
 | File | Read it when |
 |---|---|
 | `mcp/SPEC.md` | You are implementing or testing the MCP server: decisions, what waits for v1.1, the common rules (files, front matter, freshness, ids, index entries, errors), and each tool's input and output. |
-| `mcp/fixtures.md` | You are writing the server's tests, or adding or changing a fixture: the `expected.json` format, how a test runs it, and what each of the ten fixtures pins. |
+| `mcp/fixtures.md` | You are writing the server's tests, or adding or changing a fixture: the `expected.json` format, how a test runs it, and what each of the eleven fixtures pins. |
 | `mcp/audit-checks.md` | You are implementing `ctx_audit` or explaining one of its findings: what each rule checks, its exact `detail`, and the scan for untagged numbers. |
 
 ## Downstream folders governed by this standard (example)

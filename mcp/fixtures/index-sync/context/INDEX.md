@@ -18,6 +18,11 @@ Read `AGENTS.md` first.
 | File | Read it when |
 |---|---|
 | `AGENTS.md` | Always, first. |
+| `CHANGELOG.md` | You need to know what changed. |
+| `decisions.md` | You are making or revisiting a choice. |
+| `open-questions.md` | You are looking for what we do not know. |
 | `notes.md` | You need the notes. |
+| `retired.md` | You need the old notes. |
 | `missing.md` | You need a file that was deleted. |
+| `vendor/gone.md` | You need a vendor file that was deleted. |
 | `guides/00-index.md` | You need a guide. |

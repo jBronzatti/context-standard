@@ -8,12 +8,14 @@ confidence: high
 volatility: slow
 verified: 2026-10-01
 review_by: 2027-04-01
+exclude: ["vendor/**", "*.draft.md"]
 tags: [meta, routing, entrypoint]
 ---
 
 # AGENTS.md — valid fixture
 
-A test fixture for the MCP server. It is clean on purpose; do not change it.
+A test fixture for the MCP server. It is clean on purpose; do not change it. `vendor/` and
+`*.draft.md` files are excluded: they are not part of this folder.
 
 ## Reading protocol
 

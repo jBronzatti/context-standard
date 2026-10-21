@@ -8,6 +8,7 @@ confidence: high
 volatility: slow
 verified: 2026-10-01
 review_by: 2027-04-01
+exclude: ["vendor/**"]
 tags: [meta, routing, entrypoint]
 ---
 

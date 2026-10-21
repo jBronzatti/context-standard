@@ -25,6 +25,8 @@ Read `AGENTS.md` first.
 | `open-questions.md` | You are looking for what we do not know. |
 | `stack/api-limits.md` | You are calling the API. |
 | `stack/hosting.md` | You are changing where the service runs. |
+| `stack/notes.draft.md` | You need the stack notes. |
+| `vendor/upstream/limits.md` | You need the vendor's own wording. Excluded from this folder. |
 
 ## Downstream folders
 

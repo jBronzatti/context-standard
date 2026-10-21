@@ -39,18 +39,22 @@ explicitly, so no output depends on the date the tests run.
 Fixture ids start with `fx/<fixture>/`. The upward walk from a fixture reaches this
 repository's root, whose ids start with `ctx/`, so the two never collide.
 
+Every context folder in a fixture has the five root files, except `index-missing`, so a
+fixture reports only the defects it plants.
+
 | Fixture | What it pins |
 |---|---|
-| `valid` | A clean folder: zero findings; tagged numbers, masked numbers, tables, exempt `README.md` and `CLAUDE.md`, a superseded file left out of the index, a nested folder that is excluded, `used_by` that ignores dependents in the nested folder, an id resolved upward, `ctx_get` from both folders, and five error codes |
-| `index-missing` | Item 1: no `INDEX.md`, so one `index-missing` finding and no `not-indexed` ones |
-| `index-sync` | Item 1: a file not indexed, entries with no file in `INDEX.md` and in a `00-index.md`, and a `00-index.md` entry resolved relative to its own directory |
+| `valid` | A clean folder: zero findings; tagged numbers, masked numbers, tables, exempt `README.md` and `CLAUDE.md`, a superseded file left out of the index, a nested context folder outside the parent's tree, `used_by` that ignores dependents in the nested folder, an id resolved upward, `ctx_get` from both folders, and five error codes. Also `exclude: ["vendor/**", "*.draft.md"]`: three excluded files that break rules, one of them `.hidden.draft.md`, are neither listed nor audited; `stack/notes.draft.md` stays in, because `*` does not cross `/`; an `INDEX.md` row pointing at an excluded file is ignored; and `stack/hosting.md` depends on an excluded file's id, which still resolves; `ctx_get` returns that file |
+| `index-missing` | Items 1 and 13: only `AGENTS.md` and a topic file, so one `index-missing` finding, no `not-indexed` ones, and one `root-file-missing` each for `CHANGELOG.md`, `decisions.md` and `open-questions.md` |
+| `index-sync` | Item 1: a file not indexed, entries with no file in `INDEX.md` and in a `00-index.md`, a `00-index.md` entry resolved relative to its own directory, an entry for a superseded file, and an entry under an excluded path that holds no file |
 | `unresolved-id` | Item 2: unresolved `depends_on` and `supersedes` ids |
 | `duplicate-id` | Item 2: two files with one id; `ctx_get` reports `ID_AMBIGUOUS`; a `depends_on` on the shared id counts as resolved |
-| `front-matter` | Item 4: no front matter, front matter that is not YAML, empty, or a scalar; missing fields; invalid values, a list field holding a string, `read_when` out of range; and a `CLAUDE.md` with extra content that stays exempt |
+| `front-matter` | Item 4: no front matter, front matter that is not YAML, empty, or a scalar; missing fields; invalid values, a list field holding a string, `read_when` out of range; an `exclude` holding a pattern that starts with `/`, which excludes nothing, so `drafts/plan.md` stays in; and a `CLAUDE.md` with extra content that stays exempt |
 | `stale` | Item 5: both verdicts, both boundaries, and the end-of-month clamp; a second manifest on 2026-10-01 tells the clamp (2026-09-30) from date overflow (2026-10-01) |
 | `untagged-number` | Item 6: units, tags after the number, nested list items, blockquotes, fences |
 | `size-ceiling` | Item 9: a topic file of 401 lines, a root `AGENTS.md` of 201 lines, and a category of 13 files |
 | `used-by` | Item 11: an extra and a missing `used_by` id |
+| `review-by` | Item 12: a `review_by` set from the wrong volatility and one a day late; one computed through the end-of-month clamp (2026-08-31 + 6 months = 2027-02-28) is not reported |
 
 [DECISION, 2026-10-21] When the spec changes, change the affected `expected.json` files
 in the same edit.
