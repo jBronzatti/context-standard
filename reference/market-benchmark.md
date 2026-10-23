@@ -47,10 +47,22 @@ tags: [research, benchmark, mcp, positioning]
 
 # Market benchmark — context-standard against current tools
 
+## Contents
+
+- TL;DR
+- Comparison table
+- What only context-standard does
+- Where it is behind, and what to copy
+- Implications for the MCP
+- Positioning sentence for the README
+- Assumptions made
+- Open questions
+
 All sources were read on 2026-10-21. "Not documented" means not on the pages listed in
 `sources:`, not proven absent. AGENTS.md and llms.txt facts live in `ctx/reference/agents-md`
-and `ctx/reference/llms-txt` and are not restated here. Star counts are `stargazers_count`
-from `GET /repos/{owner}/{repo}` on the GitHub REST API, read at 2026-10-21 13:42 UTC.
+and `ctx/reference/llms-txt` and are not restated here. [OFFICIAL, 2026-10-21] Star
+counts are `stargazers_count` from `GET /repos/{owner}/{repo}` on the GitHub REST API,
+read at 2026-10-21 13:42 UTC.
 
 ## TL;DR
 
@@ -102,8 +114,8 @@ is `[INFERENCE, 2026-10-21]`. Stars measure attention, not usage.
 
 ## What only context-standard does
 
-"Only" means among the 16 tools in the table, as far as their docs described them on
-2026-10-21.
+[DECISION, 2026-10-21] "Only" means among the 16 tools in the table, as far as their
+docs described them on 2026-10-21.
 
 1. [INFERENCE, 2026-10-21] **A claim-level evidence vocabulary.** Seven tags plus "never
    upgrade a tag without new evidence". Spec Kit's `[NEEDS CLARIFICATION]` matches only
@@ -135,14 +147,18 @@ wikilinks (basic-memory has permalinks and `[[relations]]`), nearest-file preced
 
 ## Where it is behind, and what to copy
 
-Ordered by value for effort. These are recommendations only; no rule was changed in this
-edit.
+Ordered by value for effort. These were recommendations only when written; no rule was
+changed in that edit. [DECISION, 2026-10-21] Items 2, 3 and 7 were adopted later the same
+day: the companion `CLAUDE.md` template, tables of contents, the evaluations in `evals/`,
+and the exact definition of `drifted` (see `CHANGELOG.md`).
 
 1. [INFERENCE, 2026-10-21] **A validator — copy `skills-ref validate`, basic-memory
    `schema_validate` / `doctor`, and Spec Kit `analyze`.** Seven of the eleven audit
    checklist items are mechanical: index ↔ disk, id resolution, required fields,
    `review_by`, untagged numbers, sizes, `used_by`. Without a tool they depend on the
-   agent's diligence. This is the MCP's first job.
+   agent's diligence. This is the MCP's first job. (Since 2026-10-21 the checklist has
+   thirteen items, nine of them mechanical: the two added check `review_by` against
+   `verified` and the five root files.)
 2. [INFERENCE, 2026-10-21] **Claude Code interop — copy Claude Code's own `@import`.**
    Under the default rule in `ctx/reference/agents-md`, even a private `CLAUDE.local.md`
    turns `AGENTS.md` off, and the setting that changes this cannot be shipped in a repo.
@@ -232,7 +248,8 @@ What not to build, because others do it better:
   official usage figure.
 - [ASSUMPTION, 2026-10-21] `drifted` in `ctx_manifest` reads ">2x past `review_by`" as
   "more than one full volatility interval past `review_by`". Falsified if the standard
-  defines it otherwise (see item 7 above).
+  defines it otherwise (see item 7 above). Resolved 2026-10-21: `ctx/standard/maintenance`
+  now defines it exactly this way.
 - [DECISION, 2026-10-21] One tag rule for the whole comparison table, stated above it,
   instead of a tag in every cell, to keep the table readable.
 - [DECISION, 2026-10-21] Vendor benchmark scores are left out of the table: they measure

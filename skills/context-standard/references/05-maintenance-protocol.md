@@ -14,6 +14,16 @@ tags: [meta, maintenance]
 
 # Maintenance protocol
 
+## Contents
+
+- The edit rules
+- Verification
+- Staleness
+- Supersession
+- Contradiction resolution
+- The audit
+- Cost discipline
+
 A context folder has exactly one failure mode that matters: **it becomes confidently
 wrong**. Everything here is aimed at that.
 
@@ -45,10 +55,28 @@ schedule; verify them when something contradicts them.
 
 ## Staleness
 
+Every file has exactly one freshness verdict on a given date, computed from `review_by`
+and `volatility` alone. *interval* is the review interval of the file's current
+`volatility`: `static` 12 months, `slow` 6, `fast` 2.
+
+| Verdict | When | Meaning | Action |
+|---|---|---|---|
+| `fresh` | today ≤ `review_by` | Within its review interval | Use |
+| `unverified` | `review_by` < today ≤ `review_by` + interval | Unverified, not wrong | Use with a caveat; verify if load-bearing |
+| `drifted` | today > `review_by` + interval | Probably drifted | Verify before using; downgrade `confidence` |
+
+Date arithmetic, so that every tool gets the same answer:
+- Dates are calendar days (`YYYY-MM-DD`); time of day and time zone play no part.
+- Adding *n* months keeps the day of the month; if that day does not exist in the target
+  month, use the month's last day: 2026-08-31 + 6 months = 2027-02-28. The same rule
+  computes `review_by` from `verified`.
+- `drifted` is measured from `review_by`, not from `verified`: `slow`, verified 2026-08-31,
+  gives `review_by` 2027-02-28 and drifted after 2027-08-28, not 2027-08-31.
+
+Two signals are not computed from dates:
+
 | Signal | Meaning | Action |
 |---|---|---|
-| Past `review_by` | Unverified, not wrong | Use with a caveat; verify if load-bearing |
-| >2x past `review_by` | Probably drifted | Verify before using; downgrade `confidence` |
 | Source 404s | Provenance lost | Downgrade to `[INFERENCE]`, open a question |
 | Contradicted by observation | Wrong | Fix now; check neighbours for the same error |
 

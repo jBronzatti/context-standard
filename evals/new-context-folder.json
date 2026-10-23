@@ -1,0 +1,16 @@
+{
+  "skills": ["context-standard"],
+  "query": "Set up a context folder for product-a, a web client for the Acme payments API.",
+  "as_of": "2026-10-21",
+  "files": [],
+  "should_trigger": true,
+  "expected_behavior": [
+    "Loads the context-standard skill before writing any file",
+    "Creates product-a/context/ with the five required root files: AGENTS.md, INDEX.md, CHANGELOG.md, decisions.md and open-questions.md",
+    "Builds AGENTS.md, INDEX.md and CHANGELOG.md from their templates in the skill's templates/ folder instead of improvising their structure",
+    "Creates product-a/context/CLAUDE.md containing only the line @AGENTS.md, because the session runs in Claude Code",
+    "Gives every created .md file except CLAUDE.md front matter with all required fields, sets verified to 2026-10-21 (as_of), and sets review_by to verified plus the interval of its volatility (static 12, slow 6, fast 2 months)",
+    "Lists every other created file in INDEX.md",
+    "Leaves placeholders for project facts it cannot infer, such as non-negotiables and current state, and asks the user for them instead of inventing them"
+  ]
+}

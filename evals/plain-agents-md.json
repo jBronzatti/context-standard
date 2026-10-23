@@ -1,0 +1,13 @@
+{
+  "skills": ["context-standard"],
+  "query": "Add a rule to node-app/AGENTS.md: agents must run npm test before every commit.",
+  "as_of": "2026-10-21",
+  "files": ["files/node-app/AGENTS.md", "files/node-app/package.json"],
+  "should_trigger": false,
+  "expected_behavior": [
+    "Does not load the context-standard skill, because the folder has no INDEX.md and AGENTS.md has no front matter",
+    "Adds the rule to the existing node-app/AGENTS.md, in its Commands or Conventions section",
+    "Does not add YAML front matter to AGENTS.md",
+    "Does not create INDEX.md, CHANGELOG.md, decisions.md or open-questions.md"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skills": ["context-standard"],
+  "query": "Audit the product-a context folder.",
+  "as_of": "2026-10-21",
+  "files": [
+    "files/product-a/context/AGENTS.md",
+    "files/product-a/context/INDEX.md",
+    "files/product-a/context/CHANGELOG.md",
+    "files/product-a/context/decisions.md",
+    "files/product-a/context/open-questions.md",
+    "files/product-a/context/stack/acme-api.md"
+  ],
+  "should_trigger": true,
+  "expected_behavior": [
+    "Loads the context-standard skill and works through the audit checklist in its SKILL.md",
+    "Reports that INDEX.md lists stack/pricing.md, which does not exist",
+    "Reports stack/acme-api.md as drifted: volatility fast, review_by 2025-08-02, so drifted since 2025-10-03",
+    "Reports the untagged number in stack/acme-api.md (responses cached for 300 seconds)",
+    "Does not report a problem in a file that has none: as of 2026-10-21 the five root files are fresh",
+    "Does not delete stack/acme-api.md and does not bump its verified date without re-checking its source",
+    "Records the audit in CHANGELOG.md, with the number of files checked and the issues found"
+  ]
+}

@@ -17,6 +17,71 @@ Append at the top. Log reversals, corrections, deletions, promotions and audits.
 Do not log typos.
 
 ## 2026-10-21
+- [DECISION] **Added** the optional `exclude:` field to `AGENTS.md` front matter
+  (`02-file-format.md`, its schema block, `SKILL.md`): a list of globs, relative to the
+  folder, naming files in its own tree that are not part of the context folder. They need
+  no front matter or index entry and are not audited, but stay reachable: `INDEX.md` may
+  route to them, and their ids resolve after the folder's own files and before any parent
+  folder's. A nested context folder can never be excluded into reach, so excluding never
+  lets a folder cite downhill. `02` defines the glob syntax. The context folder
+  definition, in `02` and in the checklist's `used_by` item, now subtracts them.
+- [DECISION] **Excluded** `skills/`, `mcp/` and `evals/` from this repository's root
+  context folder through the new field (`decisions.md`, D-001, which records the cost:
+  the skill's references are no longer checked by a root audit).
+- [DECISION] **Reworded** checklist item 1 to "every file that is not superseded appears
+  in `INDEX.md`, and vice versa; an entry may also point at an excluded file", matching
+  `05-maintenance-protocol.md` § Supersession, which drops a superseded file from the
+  index. Was "every file in the folder", which contradicted it. `03-folder-architecture.md`
+  and the INDEX template's summary say the same now.
+- [DECISION] **Added** two items to the end of the audit checklist (`SKILL.md`): every
+  `review_by` equals `verified` plus its volatility's interval, and the five root files
+  exist. Appended, so items 1–11 keep their numbers. `reference/market-benchmark.md`'s
+  count of mechanical items gets a dated note.
+- **Added** `decisions.md` and `open-questions.md` at this repository's root, which
+  lacked two of its five root files, and listed them in `INDEX.md` and `README.md`. The
+  first open question is whether to ship a plugin bundling the skill and the MCP server,
+  deferred until the server exists.
+- **Audited** the root context folder's Markdown files (12 after exclusion) against the
+  mechanical checklist items 1, 2, 4, 5, 6, 9, 11, 12 and 13, as of 2026-10-21, with a
+  scratch model of the planned MCP audit. Found four numbers in `reference/` with no claim
+  tag (item 6). Three now carry a dated tag; the fourth, the ~80% figure in
+  `knowledge-base-patterns.md`, duplicated the one in `context-engineering-research.md`
+  (item 3) and became a link to it. No tag was upgraded. Nothing else was found. Items 3, 7, 8 and 10 were not reviewed beyond that.
+- [DECISION] **Fixed** the date of every evaluation with a new `as_of` field (2026-10-21);
+  the runner tells the session to assume that date (`evals/README.md`). Was: fixture
+  dates that expire and had to be moved forward by hand.
+- [DECISION] **Defined** `drifted` exactly (`05-maintenance-protocol.md` § Staleness,
+  `SKILL.md`): today > `review_by` + one review interval of the file's current
+  `volatility`. Was ">2x past `review_by`", which did not say twice what. Every file now
+  has one verdict, `fresh`, `unverified` or `drifted`, and § Staleness fixes the date
+  arithmetic (calendar days; a missing day of the month clamps to its last day) so tools
+  agree. `04-navigation-protocol.md` and `01-principles.md` §8 now say a drifted file is
+  verified before use, and the audit checklist asks for files past `review_by` to be
+  listed as unverified or drifted.
+- [DECISION] **Added** `templates/CLAUDE.template.md`, a one-line `CLAUDE.md` containing
+  `@AGENTS.md`, as a root file required when Claude Code works in the folder
+  (`03-folder-architecture.md`, `SKILL.md`). By default Claude Code skips `AGENTS.md` when
+  a `CLAUDE.md`, `.claude/CLAUDE.md` or `CLAUDE.local.md` exists in or above its working
+  directory, and the setting that changes this is ignored in a project's own settings
+  files. An existing `CLAUDE.md` gets the line added instead. The INDEX template lists it.
+- [DECISION] **Exempted** every `CLAUDE.md` from front matter, like `README.md`
+  (`02-file-format.md`, `SKILL.md`): it belongs to Claude Code, which reads it as
+  instructions, including when it already had content before the import was added. It is
+  still listed in `INDEX.md`.
+- **Added** a root `CLAUDE.md` with `@AGENTS.md` to this repository, which follows its own
+  rule, and listed it in `INDEX.md`.
+- [DECISION] **Added** a `## Contents` list at the top of every reference longer than 100
+  lines: `01`, `02`, `03`, `05` and `06` in the skill, and
+  `reference/context-engineering-research.md` and `reference/market-benchmark.md`, per the
+  Agent Skills best practices. `AGENTS.md` states this as a rule for this repository.
+- [DECISION] **Added** `evals/`: the four manual test sessions of 2026-10-20 (pull request
+  #1) as versioned evaluations, three that must trigger the skill and one that must not,
+  with fixtures. Format: Anthropic's Agent Skills best practices, plus `should_trigger`
+  from the agentskills.io trigger-query format. Kept outside the skill so installing it
+  does not copy fixtures. Listed in `INDEX.md`, `AGENTS.md` and `README.md`; `AGENTS.md`
+  warns that fixture `AGENTS.md` files govern nothing.
+- **Marked** recommendations 2, 3 and 7 of `reference/market-benchmark.md` as adopted, and
+  its `drifted` assumption as resolved.
 - **Added** `reference/market-benchmark.md` (`ctx/reference/market-benchmark`) — the
   standard compared with 16 tools: Agent Skills, AGENTS.md, Claude Code memory, Cursor,
   Copilot, llms.txt, Cline Memory Bank, Kiro, Spec Kit, five MCP servers (official memory,

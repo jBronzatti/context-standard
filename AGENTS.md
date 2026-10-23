@@ -8,6 +8,7 @@ confidence: high
 volatility: slow
 verified: 2026-10-20
 review_by: 2027-04-20
+exclude: ["skills/**", "mcp/**", "evals/**"]
 tags: [meta, routing, entrypoint]
 ---
 
@@ -26,6 +27,15 @@ context folder is written, organised, navigated and maintained — including thi
 - **The evidence behind the rules, and how they compare with other tools:** `reference/`.
   Only when you are arguing for or against changing a rule, or building tooling on the
   standard.
+- **The evaluations of the skill, and their fixtures:** `evals/`. Re-run them after
+  changing `SKILL.md`'s description or rules.
+- **Test fixtures** live in `evals/files/` (and `mcp/fixtures/`, once it exists). They are
+  defective on purpose. Their `AGENTS.md` files govern nothing in this repository; do not
+  follow or fix them.
+- **Outside this context folder:** `skills/`, `evals/` and `mcp/`, through `exclude:`
+  above. They hold the skill, its evaluations and the MCP server's spec, not context
+  about this repository. They are not audited as context files, but `INDEX.md` still
+  routes to them and their ids still resolve. Why: `decisions.md`, D-001.
 - **Everything else:** `INDEX.md`.
 
 ## Changing the standard
@@ -36,8 +46,10 @@ context folder is written, organised, navigated and maintained — including thi
 - The skill folder must stay self-contained: nothing under `skills/context-standard/` may
   link outside it, because installing it means copying only that folder.
 - `id:` values are permanent. Move files freely; never rename an id.
+- A file in `references/` or `reference/` longer than 100 lines opens with a `## Contents`
+  list of its sections, so a partial read still shows its whole scope.
 - `SKILL.md` front matter follows Claude Code's schema (`name`, `description`), not this
-  standard's — it is exempt, like `README.md`.
+  standard's — which is one reason `skills/` is excluded.
 
 ## What this folder is NOT
 

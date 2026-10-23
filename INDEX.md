@@ -20,8 +20,14 @@ Read `AGENTS.md` first. This index tells you which file answers which question.
 | File | Read it when |
 |---|---|
 | `AGENTS.md` | Always, first, before anything else in this folder. |
+| `CLAUDE.md` | Never; it only imports `AGENTS.md` for Claude Code. |
 | `README.md` | You are a human and want the tour or the install steps. Agents can skip it. |
 | `CHANGELOG.md` | You need to know whether a rule changed recently, or you just changed one. |
+| `decisions.md` | You are about to change how this repository is organised or tooled, or need to know why it is set up this way. |
+| `open-questions.md` | You are deciding how to package or distribute the skill, or how to run the evaluations automatically. |
+
+`skills/`, `mcp/` and `evals/` are excluded from this context folder (`AGENTS.md`,
+`exclude:`). The rows below that point into them are for navigation only.
 
 ## skills/context-standard/ — the skill
 
@@ -38,6 +44,12 @@ Read `AGENTS.md` first. This index tells you which file answers which question.
 | `reference/llms-txt-convention.md` | You are exposing context to external agents or publishing docs for machine consumption. |
 | `reference/knowledge-base-patterns.md` | You are designing a larger structure: wiki-plus-recipes separation, dependency graphs, RAG-vs-context boundaries. |
 | `reference/market-benchmark.md` | You are arguing that a rule is redundant with an existing tool, deciding whether to copy a feature from another context or memory tool, designing an MCP server on the standard, or writing positioning text. |
+
+## evals/ — tests of the skill
+
+| File | Read it when |
+|---|---|
+| `evals/README.md` | You are running or adding an evaluation of the skill. It lists the four evaluations, their format, and the defects planted in the fixtures under `evals/files/`. |
 
 ## Downstream folders governed by this standard (example)
 

@@ -85,6 +85,9 @@ with the disagreement stated explicitly. Escalate to the user if it is load-bear
 **A file is past `review_by`.** Use it, but tag every downstream claim as unverified and
 say so in your output. Re-verify if the task depends on it.
 
+**A file is drifted** (past `review_by` by more than one review interval; exact rule in
+`ctx/standard/maintenance` § Staleness). Verify it before you use it.
+
 **A file contradicts what you observe in reality.** Reality wins. Update the file, note it
 in `CHANGELOG.md`, and consider whether neighbouring files share the error.
 
