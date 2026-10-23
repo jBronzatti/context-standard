@@ -1,0 +1,160 @@
+{
+  "description": "Checklist item 6: the body scan. Each finding is one unit; the masked cases, the table, the fence, the comment and the tagged units produce none.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/untagged-number/changelog",
+            "title": "Changelog — untagged-number fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/untagged-number/decisions",
+            "title": "Decisions — untagged-number fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "numbers.md",
+            "id": "fx/untagged-number/numbers",
+            "title": "Numbers",
+            "summary": "Fixture file for numbers.",
+            "read_when": [
+              "you are testing numbers",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/untagged-number/open-questions",
+            "title": "Open questions — untagged-number fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 6,
+        "findings": [
+          {
+            "item": 6,
+            "rule": "untagged-number",
+            "file": "numbers.md",
+            "line": 18,
+            "detail": "number 300 has no claim tag before it"
+          },
+          {
+            "item": 6,
+            "rule": "untagged-number",
+            "file": "numbers.md",
+            "line": 22,
+            "detail": "number 5 has no claim tag before it"
+          },
+          {
+            "item": 6,
+            "rule": "untagged-number",
+            "file": "numbers.md",
+            "line": 25,
+            "detail": "number 30 has no claim tag before it"
+          },
+          {
+            "item": 6,
+            "rule": "untagged-number",
+            "file": "numbers.md",
+            "line": 28,
+            "detail": "number 2 has no claim tag before it"
+          },
+          {
+            "item": 6,
+            "rule": "untagged-number",
+            "file": "numbers.md",
+            "line": 30,
+            "detail": "number 7 has no claim tag before it"
+          },
+          {
+            "item": 6,
+            "rule": "untagged-number",
+            "file": "numbers.md",
+            "line": 49,
+            "detail": "number 12 has no claim tag before it"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    }
+  ]
+}

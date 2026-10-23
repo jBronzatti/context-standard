@@ -1,0 +1,360 @@
+{
+  "description": "Checklist item 9: a topic file of 401 lines (ceiling 400), a root AGENTS.md of 201 lines (ceiling 200), and a category of 13 files (ceiling 12).",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/size-ceiling/changelog",
+            "title": "Changelog — size-ceiling fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/size-ceiling/decisions",
+            "title": "Decisions — size-ceiling fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "long.md",
+            "id": "fx/size-ceiling/long",
+            "title": "Long",
+            "summary": "Fixture file one line over the ceiling.",
+            "read_when": [
+              "you are testing size ceilings",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/alpha.md",
+            "id": "fx/size-ceiling/many/alpha",
+            "title": "Alpha",
+            "summary": "Fixture file for alpha.",
+            "read_when": [
+              "you are testing alpha",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/bravo.md",
+            "id": "fx/size-ceiling/many/bravo",
+            "title": "Bravo",
+            "summary": "Fixture file for bravo.",
+            "read_when": [
+              "you are testing bravo",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/charlie.md",
+            "id": "fx/size-ceiling/many/charlie",
+            "title": "Charlie",
+            "summary": "Fixture file for charlie.",
+            "read_when": [
+              "you are testing charlie",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/delta.md",
+            "id": "fx/size-ceiling/many/delta",
+            "title": "Delta",
+            "summary": "Fixture file for delta.",
+            "read_when": [
+              "you are testing delta",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/echo.md",
+            "id": "fx/size-ceiling/many/echo",
+            "title": "Echo",
+            "summary": "Fixture file for echo.",
+            "read_when": [
+              "you are testing echo",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/foxtrot.md",
+            "id": "fx/size-ceiling/many/foxtrot",
+            "title": "Foxtrot",
+            "summary": "Fixture file for foxtrot.",
+            "read_when": [
+              "you are testing foxtrot",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/golf.md",
+            "id": "fx/size-ceiling/many/golf",
+            "title": "Golf",
+            "summary": "Fixture file for golf.",
+            "read_when": [
+              "you are testing golf",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/hotel.md",
+            "id": "fx/size-ceiling/many/hotel",
+            "title": "Hotel",
+            "summary": "Fixture file for hotel.",
+            "read_when": [
+              "you are testing hotel",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/india.md",
+            "id": "fx/size-ceiling/many/india",
+            "title": "India",
+            "summary": "Fixture file for india.",
+            "read_when": [
+              "you are testing india",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/juliet.md",
+            "id": "fx/size-ceiling/many/juliet",
+            "title": "Juliet",
+            "summary": "Fixture file for juliet.",
+            "read_when": [
+              "you are testing juliet",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/kilo.md",
+            "id": "fx/size-ceiling/many/kilo",
+            "title": "Kilo",
+            "summary": "Fixture file for kilo.",
+            "read_when": [
+              "you are testing kilo",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/lima.md",
+            "id": "fx/size-ceiling/many/lima",
+            "title": "Lima",
+            "summary": "Fixture file for lima.",
+            "read_when": [
+              "you are testing lima",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "many/mike.md",
+            "id": "fx/size-ceiling/many/mike",
+            "title": "Mike",
+            "summary": "Fixture file for mike.",
+            "read_when": [
+              "you are testing mike",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/size-ceiling/open-questions",
+            "title": "Open questions — size-ceiling fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 19,
+        "findings": [
+          {
+            "item": 9,
+            "rule": "size-ceiling",
+            "file": "AGENTS.md",
+            "line": null,
+            "detail": "201 lines; ceiling 200"
+          },
+          {
+            "item": 9,
+            "rule": "size-ceiling",
+            "file": "long.md",
+            "line": null,
+            "detail": "401 lines; ceiling 400"
+          },
+          {
+            "item": 9,
+            "rule": "size-ceiling",
+            "file": "many/",
+            "line": null,
+            "detail": "13 files; ceiling 12"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -29,6 +29,7 @@ create, edit, audit or navigate a context folder.
 | `skills/context-standard/templates/` | Copy-paste starting points for every kind of file. |
 | `reference/` | Distilled external research the standard is built on, with sources. Not part of the skill. |
 | `evals/` | Four evaluations of the skill, with their fixtures. Not part of the skill. |
+| `mcp/` | The specification of a planned read-only MCP server, with test fixtures. No code yet. |
 | `AGENTS.md`, `INDEX.md` | How an agent finds its way around this repository. |
 | `CHANGELOG.md` | What changed in this standard and why. |
 | `decisions.md`, `open-questions.md` | Choices about how this repository is run, and what is still undecided. |

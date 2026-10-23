@@ -1,0 +1,364 @@
+{
+  "description": "Checklist item 5: fresh on review_by itself, unverified on the drift date itself, unverified, drifted, and drifted through the end-of-month clamp. The second manifest, on 2026-10-01, separates the clamp (2026-09-30) from date overflow (2026-10-01).",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/stale/changelog",
+            "title": "Changelog — stale fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "clamped.md",
+            "id": "fx/stale/clamped",
+            "title": "Clamped",
+            "summary": "Fixture file for clamped.",
+            "read_when": [
+              "you are testing clamped",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-05-31",
+            "review_by": "2026-07-31",
+            "freshness": "drifted"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/stale/decisions",
+            "title": "Decisions — stale fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "drifted.md",
+            "id": "fx/stale/drifted",
+            "title": "Drifted",
+            "summary": "Fixture file for drifted.",
+            "read_when": [
+              "you are testing drifted",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2025-09-01",
+            "review_by": "2026-03-01",
+            "freshness": "drifted"
+          },
+          {
+            "path": "fresh-edge.md",
+            "id": "fx/stale/fresh-edge",
+            "title": "Fresh edge",
+            "summary": "Fixture file for fresh edge.",
+            "read_when": [
+              "you are testing fresh edge",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-08-21",
+            "review_by": "2026-10-21",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/stale/open-questions",
+            "title": "Open questions — stale fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "unverified-edge.md",
+            "id": "fx/stale/unverified-edge",
+            "title": "Unverified edge",
+            "summary": "Fixture file for unverified edge.",
+            "read_when": [
+              "you are testing unverified edge",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-06-21",
+            "review_by": "2026-08-21",
+            "freshness": "unverified"
+          },
+          {
+            "path": "unverified.md",
+            "id": "fx/stale/unverified",
+            "title": "Unverified",
+            "summary": "Fixture file for unverified.",
+            "read_when": [
+              "you are testing unverified",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-08-01",
+            "review_by": "2026-10-01",
+            "freshness": "unverified"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 10,
+        "findings": [
+          {
+            "item": 5,
+            "rule": "drifted",
+            "file": "clamped.md",
+            "line": 10,
+            "detail": "review_by 2026-07-31 plus 2 months (fast); drifted after 2026-09-30"
+          },
+          {
+            "item": 5,
+            "rule": "drifted",
+            "file": "drifted.md",
+            "line": 10,
+            "detail": "review_by 2026-03-01 plus 6 months (slow); drifted after 2026-09-01"
+          },
+          {
+            "item": 5,
+            "rule": "unverified",
+            "file": "unverified-edge.md",
+            "line": 10,
+            "detail": "review_by 2026-08-21 has passed; drifted after 2026-10-21"
+          },
+          {
+            "item": 5,
+            "rule": "unverified",
+            "file": "unverified.md",
+            "line": 10,
+            "detail": "review_by 2026-10-01 has passed; drifted after 2026-12-01"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-01"
+      },
+      "output": {
+        "as_of": "2026-10-01",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/stale/changelog",
+            "title": "Changelog — stale fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "clamped.md",
+            "id": "fx/stale/clamped",
+            "title": "Clamped",
+            "summary": "Fixture file for clamped.",
+            "read_when": [
+              "you are testing clamped",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-05-31",
+            "review_by": "2026-07-31",
+            "freshness": "drifted"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/stale/decisions",
+            "title": "Decisions — stale fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "drifted.md",
+            "id": "fx/stale/drifted",
+            "title": "Drifted",
+            "summary": "Fixture file for drifted.",
+            "read_when": [
+              "you are testing drifted",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2025-09-01",
+            "review_by": "2026-03-01",
+            "freshness": "drifted"
+          },
+          {
+            "path": "fresh-edge.md",
+            "id": "fx/stale/fresh-edge",
+            "title": "Fresh edge",
+            "summary": "Fixture file for fresh edge.",
+            "read_when": [
+              "you are testing fresh edge",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-08-21",
+            "review_by": "2026-10-21",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/stale/open-questions",
+            "title": "Open questions — stale fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "unverified-edge.md",
+            "id": "fx/stale/unverified-edge",
+            "title": "Unverified edge",
+            "summary": "Fixture file for unverified edge.",
+            "read_when": [
+              "you are testing unverified edge",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-06-21",
+            "review_by": "2026-08-21",
+            "freshness": "unverified"
+          },
+          {
+            "path": "unverified.md",
+            "id": "fx/stale/unverified",
+            "title": "Unverified",
+            "summary": "Fixture file for unverified.",
+            "read_when": [
+              "you are testing unverified",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "fast",
+            "verified": "2026-08-01",
+            "review_by": "2026-10-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    }
+  ]
+}

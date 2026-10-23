@@ -1,0 +1,218 @@
+{
+  "description": "Checklist item 2: two files share one id. ctx_get on that id is ambiguous; a depends_on naming it counts as resolved and points at the first file by path.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/duplicate-id/changelog",
+            "title": "Changelog — duplicate-id fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/duplicate-id/decisions",
+            "title": "Decisions — duplicate-id fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "one.md",
+            "id": "fx/duplicate-id/topic",
+            "title": "One",
+            "summary": "Fixture file for topic.",
+            "read_when": [
+              "you are testing topic",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/duplicate-id/open-questions",
+            "title": "Open questions — duplicate-id fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "three.md",
+            "id": "fx/duplicate-id/three",
+            "title": "Three",
+            "summary": "Fixture file for three.",
+            "read_when": [
+              "you are testing three",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "two.md",
+            "id": "fx/duplicate-id/topic",
+            "title": "Two",
+            "summary": "Fixture file for topic.",
+            "read_when": [
+              "you are testing topic",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 8,
+        "findings": [
+          {
+            "item": 2,
+            "rule": "duplicate-id",
+            "file": "one.md",
+            "line": 2,
+            "detail": "id fx/duplicate-id/topic is also used by two.md"
+          },
+          {
+            "item": 2,
+            "rule": "duplicate-id",
+            "file": "two.md",
+            "line": 2,
+            "detail": "id fx/duplicate-id/topic is also used by one.md"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/duplicate-id/topic",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "error": "ID_AMBIGUOUS"
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/duplicate-id/three",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/duplicate-id/three",
+        "path": "three.md",
+        "front_matter": {
+          "id": "fx/duplicate-id/three",
+          "title": "Three",
+          "summary": "Fixture file for three.",
+          "read_when": [
+            "you are testing three",
+            "you are reading a fixture"
+          ],
+          "status": "stable",
+          "confidence": "high",
+          "volatility": "slow",
+          "verified": "2026-10-01",
+          "review_by": "2027-04-01",
+          "depends_on": [
+            "fx/duplicate-id/topic"
+          ],
+          "tags": [
+            "fixture"
+          ]
+        },
+        "body": "\n# Three\n\nDepends on the shared id, which counts as resolved.\n",
+        "freshness": "fresh",
+        "depends_on": [
+          {
+            "id": "fx/duplicate-id/topic",
+            "path": "one.md"
+          }
+        ],
+        "supersedes": [],
+        "dependents": []
+      }
+    }
+  ]
+}

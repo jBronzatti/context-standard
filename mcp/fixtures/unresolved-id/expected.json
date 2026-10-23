@@ -1,0 +1,205 @@
+{
+  "description": "Checklist item 2: a depends_on id and a supersedes id that resolve nowhere, next to a depends_on id that resolves.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": "INDEX.md",
+        "files": [
+          {
+            "path": "CHANGELOG.md",
+            "id": "fx/unresolved-id/changelog",
+            "title": "Changelog — unresolved-id fixture",
+            "summary": "Append-only record of changes.",
+            "read_when": [
+              "you need to know what changed",
+              "you just changed something"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "a.md",
+            "id": "fx/unresolved-id/a",
+            "title": "A",
+            "summary": "Fixture file for a.",
+            "read_when": [
+              "you are testing a",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "b.md",
+            "id": "fx/unresolved-id/b",
+            "title": "B",
+            "summary": "Fixture file for b.",
+            "read_when": [
+              "you are testing b",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "decisions.md",
+            "id": "fx/unresolved-id/decisions",
+            "title": "Decisions — unresolved-id fixture",
+            "summary": "Choices made, and when to revisit them.",
+            "read_when": [
+              "you are making a choice",
+              "you are revisiting a choice"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          },
+          {
+            "path": "open-questions.md",
+            "id": "fx/unresolved-id/open-questions",
+            "title": "Open questions — unresolved-id fixture",
+            "summary": "What we do not know yet.",
+            "read_when": [
+              "you are looking for what we do not know",
+              "you found a new unknown"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 7,
+        "findings": [
+          {
+            "item": 2,
+            "rule": "unresolved-id",
+            "file": "a.md",
+            "line": 11,
+            "detail": "depends_on names fx/unresolved-id/gone, which no file has"
+          },
+          {
+            "item": 2,
+            "rule": "unresolved-id",
+            "file": "a.md",
+            "line": 12,
+            "detail": "supersedes names fx/unresolved-id/older, which no file has"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_get",
+      "input": {
+        "id": "fx/unresolved-id/a",
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "id": "fx/unresolved-id/a",
+        "path": "a.md",
+        "front_matter": {
+          "id": "fx/unresolved-id/a",
+          "title": "A",
+          "summary": "Fixture file for a.",
+          "read_when": [
+            "you are testing a",
+            "you are reading a fixture"
+          ],
+          "status": "stable",
+          "confidence": "high",
+          "volatility": "slow",
+          "verified": "2026-10-01",
+          "review_by": "2027-04-01",
+          "depends_on": [
+            "fx/unresolved-id/b",
+            "fx/unresolved-id/gone"
+          ],
+          "supersedes": [
+            "fx/unresolved-id/older"
+          ],
+          "tags": [
+            "fixture"
+          ]
+        },
+        "body": "\n# A\n\nDepends on one id that resolves and one that does not.\n",
+        "freshness": "fresh",
+        "depends_on": [
+          {
+            "id": "fx/unresolved-id/b",
+            "path": "b.md"
+          },
+          {
+            "id": "fx/unresolved-id/gone",
+            "path": null
+          }
+        ],
+        "supersedes": [
+          {
+            "id": "fx/unresolved-id/older",
+            "path": null
+          }
+        ],
+        "dependents": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "description": "Checklist items 1 and 13: the root holds only AGENTS.md and a topic file. One index-missing finding and no not-indexed findings, and one root-file-missing finding each for CHANGELOG.md, decisions.md and open-questions.md; the manifest's index is null.",
+  "calls": [
+    {
+      "tool": "ctx_manifest",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "agents": "AGENTS.md",
+        "index": null,
+        "files": [
+          {
+            "path": "notes.md",
+            "id": "fx/index-missing/notes",
+            "title": "Notes",
+            "summary": "Fixture file for notes.",
+            "read_when": [
+              "you are testing notes",
+              "you are reading a fixture"
+            ],
+            "do_not_read_when": [],
+            "status": "stable",
+            "confidence": "high",
+            "volatility": "slow",
+            "verified": "2026-10-01",
+            "review_by": "2027-04-01",
+            "freshness": "fresh"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "ctx_audit",
+      "input": {
+        "folder": "context",
+        "as_of": "2026-10-21"
+      },
+      "output": {
+        "as_of": "2026-10-21",
+        "files_checked": 2,
+        "findings": [
+          {
+            "item": 13,
+            "rule": "root-file-missing",
+            "file": "CHANGELOG.md",
+            "line": null,
+            "detail": "CHANGELOG.md does not exist"
+          },
+          {
+            "item": 1,
+            "rule": "index-missing",
+            "file": "INDEX.md",
+            "line": null,
+            "detail": "INDEX.md does not exist"
+          },
+          {
+            "item": 13,
+            "rule": "root-file-missing",
+            "file": "decisions.md",
+            "line": null,
+            "detail": "decisions.md does not exist"
+          },
+          {
+            "item": 13,
+            "rule": "root-file-missing",
+            "file": "open-questions.md",
+            "line": null,
+            "detail": "open-questions.md does not exist"
+          }
+        ],
+        "manual": [
+          {
+            "item": 3,
+            "text": "No two files state the same number independently."
+          },
+          {
+            "item": 7,
+            "text": "`decisions.md` has no entry contradicted by a topic file."
+          },
+          {
+            "item": 8,
+            "text": "`open-questions.md` has no entry that was silently answered elsewhere."
+          },
+          {
+            "item": 10,
+            "text": "`AGENTS.md` still describes the folder that actually exists."
+          }
+        ]
+      }
+    }
+  ]
+}

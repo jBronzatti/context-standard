@@ -43,13 +43,21 @@ Read `AGENTS.md` first. This index tells you which file answers which question.
 | `reference/agents-md-convention.md` | You are integrating with external tooling, or want the AGENTS.md convention as others define it. |
 | `reference/llms-txt-convention.md` | You are exposing context to external agents or publishing docs for machine consumption. |
 | `reference/knowledge-base-patterns.md` | You are designing a larger structure: wiki-plus-recipes separation, dependency graphs, RAG-vs-context boundaries. |
-| `reference/market-benchmark.md` | You are arguing that a rule is redundant with an existing tool, deciding whether to copy a feature from another context or memory tool, designing an MCP server on the standard, or writing positioning text. |
+| `reference/market-benchmark.md` | You are arguing that a rule is redundant with an existing tool, deciding whether to copy a feature from another context or memory tool, weighing an MCP feature against other tools (the adopted design is `mcp/SPEC.md`), or writing positioning text. |
 
 ## evals/ — tests of the skill
 
 | File | Read it when |
 |---|---|
 | `evals/README.md` | You are running or adding an evaluation of the skill. It lists the four evaluations, their format, and the defects planted in the fixtures under `evals/files/`. |
+
+## mcp/ — the MCP server specification
+
+| File | Read it when |
+|---|---|
+| `mcp/SPEC.md` | You are implementing or testing the MCP server: decisions, what waits for v1.1, the common rules (files, front matter, freshness, ids, index entries, errors), and each tool's input and output. |
+| `mcp/fixtures.md` | You are writing the server's tests, or adding or changing a fixture: the `expected.json` format, how a test runs it, and what each of the eleven fixtures pins. |
+| `mcp/audit-checks.md` | You are implementing `ctx_audit` or explaining one of its findings: what each rule checks, its exact `detail`, and the scan for untagged numbers. |
 
 ## Downstream folders governed by this standard (example)
 

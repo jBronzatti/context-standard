@@ -18,8 +18,9 @@ file that owns it, log it in `CHANGELOG.md`, and mark the entry `Resolved <date>
 pointer, as `ctx/reference/market-benchmark` does.
 
 - [OPEN, 2026-10-21] Should the standard also ship as a Claude Code plugin that bundles
-  `skills/context-standard/` and the read-only MCP server? [DECISION, 2026-10-21]
-  Deferred until the MCP server v1 exists. [ASSUMPTION, 2026-10-21] A plugin would let
+  `skills/context-standard/` and the read-only MCP server (`ctx/mcp/spec`)?
+  [DECISION, 2026-10-21] Deferred until the MCP server v1 exists.
+  [ASSUMPTION, 2026-10-21] A plugin would let
   Claude Code's plugin evaluation command run the trigger and no-trigger tests in
   `evals/` in CI, which a bare skill folder cannot; recalled from an earlier session, not
   checked against Claude Code's documentation. Falsified if that documentation shows the
